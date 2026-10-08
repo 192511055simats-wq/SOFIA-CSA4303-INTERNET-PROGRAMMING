@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Library Management System</title>
+
+    <!-- CSS CONNECTION -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <span>NEON</span>
+        <small>Library Management</small>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#books">Books</a>
+        <a href="#materials">Materials</a>
+        <a href="#login">Login</a>
+        <a href="#register">Register</a>
+        <a href="#admin">Admin</a>
+    </nav>
+
+</header>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            COLLEGE LIBRARY SYSTEM
+        </div>
+
+        <h1>
+            Knowledge Begins<br>
+            <span>With a Book.</span>
+        </h1>
+
+        <p>
+            Search books, manage borrowing records, access academic
+            materials and keep track of your library activity.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#books" class="btn primary-btn">
+                Explore Books
+            </a>
+
+            <a href="#register" class="btn secondary-btn">
+                Create Account
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATISTICS ================= -->
+
+<section class="stats-section">
+
+    <div class="stat">
+        <strong id="bookCount">0</strong>
+        <span>Total Books</span>
+    </div>
+
+    <div class="stat">
+        <strong id="userCount">0</strong>
+        <span>Registered Users</span>
+    </div>
+
+    <div class="stat">
+        <strong id="issueCount">0</strong>
+        <span>Issued Books</span>
+    </div>
+
+    <div class="stat">
+        <strong id="materialCount">0</strong>
+        <span>Study Materials</span>
+    </div>
+
+</section>
+
+
+<!-- ================= BOOKS ================= -->
+
+<section id="books" class="section">
+
+    <div class="section-heading">
+        <span>LIBRARY CATALOG</span>
+        <h2>Explore Our Books</h2>
+        <p>
+            Search and view books available in the college library.
+        </p>
+    </div>
+
+    <div class="search-area">
+
+        <input
+            type="text"
+            id="bookSearch"
+            placeholder="Search by title, author or category..."
+            onkeyup="displayBooks()"
+        >
+
+    </div>
+
+    <div id="bookList" class="book-grid"></div>
+
+</section>
+
+
+<!-- ================= REGISTER ================= -->
+
+<section id="register" class="section alternate-section">
+
+    <div class="section-heading">
+        <span>NEW MEMBER</span>
+        <h2>Create an Account</h2>
+        <p>Register as a student to access library services.</p>
+    </div>
+
+    <div class="form-card">
+
+        <form id="registerForm">
+
+            <div class="form-row">
+
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        id="registerName"
+                        required
+                        placeholder="Enter your name"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label>Register Number</label>
+                    <input
+                        type="text"
+                        id="registerNumber"
+                        required
+                        placeholder="Enter register number"
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="input-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        required
+                        placeholder="Enter email"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label>Department</label>
+
+                    <select id="registerDepartment" required>
+
+                        <option value="">Select Department</option>
+                        <option>CSE</option>
+                        <option>ECE</option>
+                        <option>EEE</option>
+                        <option>MECH</option>
+                        <option>CIVIL</option>
+                        <option>IT</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    required
+                    placeholder="Create password"
+                >
+
+            </div>
+
+            <button type="submit" class="form-btn">
+                Register
+            </button>
+
+        </form>
+
+        <div id="registerMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- REGISTERED USERS -->
+
+    <div class="data-card">
+
+        <div class="data-card-header">
+            <h3>Registered Students</h3>
+            <span id="registeredUserLabel">0 users</span>
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Register No.</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="usersTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LOGIN ================= -->
+
+<section id="login" class="section">
+
+    <div class="section-heading">
+        <span>MEMBER ACCESS</span>
+        <h2>Login</h2>
+        <p>Access your library account.</p>
+    </div>
+
+    <div class="form-card small-form">
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    required
+                    placeholder="Enter registered email"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    required
+                    placeholder="Enter password"
+                >
+
+            </div>
+
+            <button type="submit" class="form-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div id="loginMessage" class="message"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= USER DASHBOARD ================= -->
+
+<section id="dashboard" class="section dashboard-section">
+
+    <div class="section-heading">
+        <span>STUDENT AREA</span>
+        <h2>My Library Dashboard</h2>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-icon">01</div>
+
+            <h3>Borrowed Books</h3>
+
+            <strong id="myBorrowCount">0</strong>
+
+            <p>
+                Books currently issued to you.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-icon">02</div>
+
+            <h3>Outstanding Fine</h3>
+
+            <strong id="myFine">₹0</strong>
+
+            <p>
+                Current library fine.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-icon">03</div>
+
+            <h3>Profile</h3>
+
+            <strong id="profileName">Guest</strong>
+
+            <p>
+                Logged-in student.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- BORROW HISTORY -->
+
+    <div class="data-card">
+
+        <div class="data-card-header">
+            <h3>My Borrow History</h3>
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Book</th>
+                        <th>Issue Date</th>
+                        <th>Expiry Date</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="borrowTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MATERIALS ================= -->
+
+<section id="materials" class="section alternate-section">
+
+    <div class="section-heading">
+        <span>ACADEMIC RESOURCES</span>
+        <h2>Study Materials</h2>
+        <p>
+            Find materials according to year and semester.
+        </p>
+    </div>
+
+    <div class="filters">
+
+        <select id="materialYear" onchange="displayMaterials()">
+
+            <option value="All">All Years</option>
+            <option value="1">First Year</option>
+            <option value="2">Second Year</option>
+            <option value="3">Third Year</option>
+            <option value="4">Fourth Year</option>
+
+        </select>
+
+
+        <select id="materialSemester" onchange="displayMaterials()">
+
+            <option value="All">All Semesters</option>
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+            <option value="7">Semester 7</option>
+            <option value="8">Semester 8</option>
+
+        </select>
+
+    </div>
+
+
+    <div id="materialList" class="material-grid"></div>
+
+</section>
+
+
+<!-- ================= PROFILE ================= -->
+
+<section class="section">
+
+    <div class="section-heading">
+        <span>ACCOUNT</span>
+        <h2>My Profile</h2>
+    </div>
+
+    <div class="profile-card">
+
+        <div class="profile-header">
+
+            <div class="profile-avatar">
+                LIB
+            </div>
+
+            <div>
+                <h3 id="profileDisplayName">Guest User</h3>
+                <p id="profileDisplayEmail">
+                    Please login to view your profile.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="profile-details">
+
+            <div>
+                <span>Register Number</span>
+                <strong id="profileRegister">-</strong>
+            </div>
+
+            <div>
+                <span>Department</span>
+                <strong id="profileDepartment">-</strong>
+            </div>
+
+            <div>
+                <span>Fine</span>
+                <strong id="profileFine">₹0</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ADMIN ================= -->
+
+<section id="admin" class="section admin-section">
+
+    <div class="section-heading">
+
+        <span>LIBRARIAN CONTROL</span>
+
+        <h2>Admin Dashboard</h2>
+
+        <p>
+            Manage books, users, issues, returns, fines and materials.
+        </p>
+
+    </div>
+
+
+    <!-- ADMIN STATS -->
+
+    <div class="admin-stats">
+
+        <div>
+            <span>BOOKS</span>
+            <strong id="adminBookCount">0</strong>
+        </div>
+
+        <div>
+            <span>USERS</span>
+            <strong id="adminUserCount">0</strong>
+        </div>
+
+        <div>
+            <span>ISSUED</span>
+            <strong id="adminIssueCount">0</strong>
+        </div>
+
+        <div>
+            <span>FINES</span>
+            <strong id="adminFineCount">0</strong>
+        </div>
+
+    </div>
+
+
+    <div class="admin-grid">
+
+
+        <!-- ADD BOOK -->
+
+        <div class="admin-card">
+
+            <h3>Add Book</h3>
+
+            <form id="bookForm">
+
+                <input
+                    type="text"
+                    id="bookTitle"
+                    placeholder="Book title"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="bookAuthor"
+                    placeholder="Author"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="bookCategory"
+                    placeholder="Category"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="bookQuantity"
+                    placeholder="Quantity"
+                    min="1"
+                    required
+                >
+
+                <button type="submit" class="admin-btn">
+                    Add Book
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- ISSUE BOOK -->
+
+        <div class="admin-card">
+
+            <h3>Issue Book</h3>
+
+            <form id="issueForm">
+
+                <select id="issueBook" required>
+                    <option value="">Select Book</option>
+                </select>
+
+                <input
+                    type="text"
+                    id="issueStudent"
+                    placeholder="Student Register No."
+                    required
+                >
+
+                <input
+                    type="date"
+                    id="issueDate"
+                    required
+                >
+
+                <input
+                    type="date"
+                    id="expiryDate"
+                    required
+                >
+
+                <button type="submit" class="admin-btn">
+                    Issue Book
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- FINE -->
+
+        <div class="admin-card">
+
+            <h3>Make Fine</h3>
+
+            <form id="fineForm">
+
+                <input
+                    type="text"
+                    id="fineStudent"
+                    placeholder="Register Number"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="fineAmount"
+                    placeholder="Fine amount"
+                    min="1"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="fineReason"
+                    placeholder="Reason"
+                    required
+                >
+
+                <button type="submit" class="admin-btn">
+                    Add Fine
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- MATERIAL -->
+
+        <div class="admin-card">
+
+            <h3>Add Material</h3>
+
+            <form id="materialForm">
+
+                <input
+                    type="text"
+                    id="materialTitle"
+                    placeholder="Material title"
+                    required
+                >
+
+                <select id="materialAddYear" required>
+
+                    <option value="">Year</option>
+                    <option value="1">First Year</option>
+                    <option value="2">Second Year</option>
+                    <option value="3">Third Year</option>
+                    <option value="4">Fourth Year</option>
+
+                </select>
+
+                <select id="materialAddSemester" required>
+
+                    <option value="">Semester</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
+
+                </select>
+
+                <input
+                    type="text"
+                    id="materialSubject"
+                    placeholder="Subject"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="materialLink"
+                    placeholder="PDF / File link"
+                    required
+                >
+
+                <button type="submit" class="admin-btn">
+                    Add Material
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADMIN BOOK TABLE -->
+
+    <div class="data-card admin-data-card">
+
+        <div class="data-card-header">
+
+            <h3>Book Inventory</h3>
+
+            <span>
+                Manage available books
+            </span>
+
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Total</th>
+                        <th>Available</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="adminBookTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- ISSUE TABLE -->
+
+    <div class="data-card admin-data-card">
+
+        <div class="data-card-header">
+
+            <h3>Issue / Return Records</h3>
+
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Book</th>
+                        <th>Student</th>
+                        <th>Issue Date</th>
+                        <th>Expiry Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="adminIssueTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- FINE TABLE -->
+
+    <div class="data-card admin-data-card">
+
+        <div class="data-card-header">
+
+            <h3>Fine Records</h3>
+
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Student</th>
+                        <th>Amount</th>
+                        <th>Reason</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="fineTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- MATERIAL TABLE -->
+
+    <div class="data-card admin-data-card">
+
+        <div class="data-card-header">
+
+            <h3>Material Records</h3>
+
+        </div>
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Semester</th>
+                        <th>Subject</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="adminMaterialTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section class="section contact-section">
+
+    <div class="section-heading">
+
+        <span>GET IN TOUCH</span>
+
+        <h2>Contact Library</h2>
+
+        <p>
+            Send your questions or requests to the library.
+        </p>
+
+    </div>
+
+    <div class="form-card small-form">
+
+        <form id="contactForm">
+
+            <input
+                type="text"
+                id="contactName"
+                placeholder="Your name"
+                required
+            >
+
+            <input
+                type="email"
+                id="contactEmail"
+                placeholder="Your email"
+                required
+            >
+
+            <textarea
+                id="contactMessage"
+                placeholder="Your message"
+                required
+            ></textarea>
+
+            <button type="submit" class="form-btn">
+                Send Message
+            </button>
+
+        </form>
+
+        <div id="contactResult" class="message"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        NEON
+    </div>
+
+    <p>
+        College Library Management System
+    </p>
+
+    <p class="copyright">
+        Frontend Practical • HTML • CSS • JavaScript
+    </p>
+
+</footer>
+
+
+<!-- JAVASCRIPT CONNECTION -->
+<script src="script.js"></script>
+
+</body>
+</html>
