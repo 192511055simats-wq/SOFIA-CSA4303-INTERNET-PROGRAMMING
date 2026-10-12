@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CakeBloom | Sweet Moments</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="#" class="logo">🍰 Cake<span>Bloom</span></a>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#cakes">Explore Cakes</a>
+        <a href="#orders">My Orders</a>
+        <a href="#address">Address</a>
+    </nav>
+    <div class="nav-actions">
+        <button class="outline-btn" onclick="openAuth()">Login</button>
+        <button class="cart-btn" onclick="showCart()">
+            🛒 Cart <span id="cartCount">0</span>
+        </button>
+    </div>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="eyebrow">✨ Baked with love, delivered with joy</span>
+            <h1>Life is short.<br>Eat more <span>cake!</span></h1>
+            <p>
+                Discover delicious cakes for birthdays, celebrations,
+                and every little moment worth celebrating.
+            </p>
+            <a href="#cakes" class="primary-btn">Explore Our Cakes ↗</a>
+            <div class="hero-stats">
+                <div><strong>20+</strong><small>Sweet creations</small></div>
+                <div><strong>Fresh</strong><small>Made with love</small></div>
+                <div><strong>Happy</strong><small>Moments delivered</small></div>
+            </div>
+        </div>
+
+        <div class="hero-art">
+            <div class="floating-shape shape-one">✦</div>
+            <div class="floating-shape shape-two">♡</div>
+            <div class="floating-shape shape-three">🍓</div>
+            <div class="hero-circle"></div>
+            <img
+                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
+                alt="Beautiful chocolate celebration cake"
+                class="hero-cake"
+            >
+            <div class="floating-note">♡ Made fresh<br>for you!</div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div>🍓 <span><b>Fresh Ingredients</b><small>Quality in every bite</small></span></div>
+        <div>🎂 <span><b>Custom Cakes</b><small>Made for your moments</small></span></div>
+        <div>🚚 <span><b>Doorstep Delivery</b><small>Sweetness to your door</small></span></div>
+        <div>💗 <span><b>Made with Love</b><small>Happiness in every slice</small></span></div>
+    </section>
+
+    <section class="shop section" id="cakes">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">OUR SWEET COLLECTION</span>
+                <h2>Find your <span>happy cake</span></h2>
+                <p>Pick your favourite and let the celebrations begin.</p>
+            </div>
+            <span class="cake-sticker">🧁 Sweet treats await!</span>
+        </div>
+
+        <div class="filter-panel">
+            <div class="search-box">
+                <span>🔍</span>
+                <input type="search" id="searchInput"
+                    placeholder="Search chocolate, birthday, strawberry..."
+                    oninput="renderCakes()">
+            </div>
+
+            <select id="categoryFilter" onchange="updateSubcategories()">
+                <option value="All">All Categories</option>
+                <option value="Birthday">Birthday</option>
+                <option value="Chocolate">Chocolate</option>
+                <option value="Fruit">Fruit Cakes</option>
+                <option value="Wedding">Wedding</option>
+                <option value="Cupcakes">Cupcakes</option>
+            </select>
+
+            <select id="subcategoryFilter" onchange="renderCakes()">
+                <option value="All">All Types</option>
+            </select>
+
+            <div class="price-filter">
+                <label for="priceFilter">Max ₹<span id="priceValue">2000</span></label>
+                <input type="range" id="priceFilter" min="300" max="2000"
+                    step="100" value="2000"
+                    oninput="updatePriceLabel()">
+            </div>
+        </div>
+
+        <div class="results-row">
+            <p id="resultCount">Discover something sweet</p>
+            <span>✨ Handpicked favourites</span>
+        </div>
+
+        <div class="cake-grid" id="cakeGrid"></div>
+    </section>
+
+    <section class="orders-section section" id="orders">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">YOUR SWEET JOURNEY</span>
+                <h2>My <span>Orders</span></h2>
+                <p>Check your orders and delivery progress.</p>
+            </div>
+        </div>
+        <div id="ordersList" class="orders-list">
+            <div class="empty-state">🍰 Your orders will appear here.</div>
+        </div>
+    </section>
+
+    <section class="address-section section" id="address">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">DELIVERY DETAILS</span>
+                <h2>Your delivery <span>address</span></h2>
+                <p>Save your address for a smoother checkout.</p>
+            </div>
+        </div>
+
+        <form id="addressForm" class="address-form">
+            <label>Full Name
+                <input id="addressName" required placeholder="Enter your name">
+            </label>
+            <label>Phone Number
+                <input id="addressPhone" required inputmode="numeric"
+                    pattern="[0-9]{10}" maxlength="10"
+                    placeholder="10-digit mobile number">
+            </label>
+            <label class="wide-field">House / Street Address
+                <textarea id="addressLine" required
+                    placeholder="House number, street, area"></textarea>
+            </label>
+            <label>City
+                <input id="addressCity" required placeholder="City">
+            </label>
+            <label>PIN Code
+                <input id="addressPin" required inputmode="numeric"
+                    pattern="[0-9]{6}" maxlength="6" placeholder="6-digit PIN">
+            </label>
+            <button class="primary-btn wide-field" type="submit">
+                Save / Update Address 💗
+            </button>
+        </form>
+        <p id="addressMessage" class="form-message"></p>
+    </section>
+</main>
+
+<footer>
+    <a href="#home" class="logo">🍰 Cake<span>Bloom</span></a>
+    <p>Made with ♡ for all your sweetest moments.</p>
+    <small>Internet Programming Lab Project · Demo website</small>
+</footer>
+
+<!-- Login and registration modal -->
+<div class="modal" id="authModal">
+    <div class="modal-card">
+        <button class="close-btn" onclick="closeModal('authModal')">×</button>
+        <div class="modal-icon">🧁</div>
+        <h2 id="authTitle">Welcome back!</h2>
+        <p>Create an account or sign in to manage your orders.</p>
+
+        <form id="authForm">
+            <div id="nameField" class="hidden">
+                <input id="authName" placeholder="Full name">
+            </div>
+            <input type="email" id="authEmail" placeholder="Email address" required>
+            <input type="password" id="authPassword" placeholder="Password"
+                minlength="4" required>
+            <button type="submit" class="primary-btn full-btn" id="authSubmit">
+                Login
+            </button>
+        </form>
+        <p class="switch-auth">
+            <span id="authSwitchText">New to CakeBloom?</span>
+            <button type="button" onclick="toggleAuthMode()" id="authSwitch">
+                Create account
+            </button>
+        </p>
+        <p class="form-message" id="authMessage"></p>
+    </div>
+</div>
+
+<!-- Shopping cart -->
+<div class="modal" id="cartModal">
+    <div class="modal-card cart-modal-card">
+        <button class="close-btn" onclick="closeModal('cartModal')">×</button>
+        <div class="modal-icon">🛍️</div>
+        <h2>Your Sweet Cart</h2>
+        <div id="cartItems"></div>
+        <div class="cart-total">
+            <span>Total</span><strong id="cartTotal">₹0</strong>
+        </div>
+        <button class="primary-btn full-btn" onclick="checkout()">
+            Proceed to Checkout →
+        </button>
+    </div>
+</div>
+
+<!-- Checkout -->
+<div class="modal" id="checkoutModal">
+    <div class="modal-card checkout-card">
+        <button class="close-btn" onclick="closeModal('checkoutModal')">×</button>
+        <div class="modal-icon">💌</div>
+        <h2>Almost yours!</h2>
+        <p>Confirm your delivery details to place the order.</p>
+        <form id="checkoutForm">
+            <input id="checkoutName" placeholder="Full name" required>
+            <input id="checkoutPhone" placeholder="10-digit phone number"
+                inputmode="numeric" pattern="[0-9]{10}" maxlength="10" required>
+            <textarea id="checkoutAddress" placeholder="Full delivery address"
+                required></textarea>
+            <div class="payment-note">
+                💳 Demo payment: no real payment is collected.
+            </div>
+            <button class="primary-btn full-btn" type="submit">
+                Place Order · <span id="checkoutTotal">₹0</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Cake customization -->
+<div class="modal" id="cakeModal">
+    <div class="modal-card">
+        <button class="close-btn" onclick="closeModal('cakeModal')">×</button>
+        <div id="cakeDetails"></div>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
