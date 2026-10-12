@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RailEase | Online Train Reservation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="#">🚆 RailEase</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#search">Find Trains</a>
+      <a href="#bookings">My Bookings</a>
+      <a href="#pnr">PNR Status</a>
+      <a href="#admin">Admin</a>
+    </nav>
+    <div class="auth-buttons">
+      <button class="btn btn-light" onclick="showAuth('login')">Login</button>
+      <button class="btn btn-primary" onclick="showAuth('register')">Register</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
+        <h1>Travel smarter.<br><span>Travel by train.</span></h1>
+        <p>Search trains, choose your class and manage your bookings in one place.</p>
+        <a class="btn btn-primary" href="#search">Book a Ticket →</a>
+      </div>
+      <div class="hero-icon">🚄</div>
+    </section>
+
+    <section class="section" id="search">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PLAN YOUR JOURNEY</p>
+          <h2>Find your train</h2>
+        </div>
+        <span class="tag">Demo reservation system</span>
+      </div>
+
+      <form id="searchForm" class="search-panel">
+        <label>From
+          <input id="from" list="stations" placeholder="Departure station" required>
+        </label>
+        <button type="button" class="swap-btn" onclick="swapStations()" title="Swap stations">⇄</button>
+        <label>To
+          <input id="to" list="stations" placeholder="Arrival station" required>
+        </label>
+        <datalist id="stations">
+          <option value="Chennai"><option value="Bengaluru">
+          <option value="Coimbatore"><option value="Madurai">
+          <option value="Hyderabad"><option value="Mumbai">
+          <option value="Delhi"><option value="Kochi">
+          <option value="Trichy"><option value="Salem">
+        </datalist>
+        <label>Journey date
+          <input id="journeyDate" type="date" required>
+        </label>
+        <label>Class
+          <select id="travelClass">
+            <option value="Sleeper">Sleeper (SL)</option>
+            <option value="AC 3 Tier">AC 3 Tier (3A)</option>
+            <option value="AC 2 Tier">AC 2 Tier (2A)</option>
+            <option value="AC First Class">AC First Class (1A)</option>
+            <option value="Chair Car">Chair Car (CC)</option>
+          </select>
+        </label>
+        <button class="btn btn-primary search-button" type="submit">Search Trains</button>
+      </form>
+
+      <div id="searchMessage" class="message" aria-live="polite"></div>
+      <div id="trainResults" class="train-list"></div>
+    </section>
+
+    <section class="section alt-section" id="bookings">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR TRAVEL RECORD</p>
+          <h2>My bookings</h2>
+        </div>
+        <button class="btn btn-light" onclick="renderBookings()">Refresh</button>
+      </div>
+      <div id="bookingList" class="booking-list"></div>
+    </section>
+
+    <section class="section" id="pnr">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CHECK YOUR TICKET</p>
+          <h2>PNR status</h2>
+        </div>
+      </div>
+      <form id="pnrForm" class="inline-form">
+        <input id="pnrInput" placeholder="Enter your 10-digit demo PNR" maxlength="10" required>
+        <button class="btn btn-primary" type="submit">Check Status</button>
+      </form>
+      <div id="pnrResult" class="message" aria-live="polite"></div>
+    </section>
+
+    <section class="section alt-section" id="admin">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">MANAGEMENT CONSOLE</p>
+          <h2>Admin dashboard</h2>
+        </div>
+        <span class="tag">Demo access</span>
+      </div>
+      <div class="admin-login">
+        <label>Admin username
+          <input id="adminUser" value="admin">
+        </label>
+        <label>Admin password
+          <input id="adminPass" type="password" placeholder="Enter admin password">
+        </label>
+        <button class="btn btn-primary" onclick="adminLogin()">Open Dashboard</button>
+      </div>
+      <p class="small-note">Demo credentials: username <b>admin</b>, password <b>admin123</b>.</p>
+      <div id="adminDashboard" hidden>
+        <div id="adminStats" class="stats-grid"></div>
+        <h3>Add a demo train</h3>
+        <form id="addTrainForm" class="admin-form">
+          <label>Train number<input id="newNumber" required></label>
+          <label>Train name<input id="newName" required></label>
+          <label>From<input id="newFrom" required></label>
+          <label>To<input id="newTo" required></label>
+          <label>Departure<input id="newDeparture" type="time" required></label>
+          <label>Arrival<input id="newArrival" type="time" required></label>
+          <label>Base fare (₹)<input id="newFare" type="number" min="1" required></label>
+          <button class="btn btn-primary" type="submit">Add Train</button>
+        </form>
+        <h3>Train schedules</h3>
+        <div id="adminTrains" class="table-wrap"></div>
+        <h3>Booking and payment report</h3>
+        <div id="adminBookings" class="table-wrap"></div>
+        <button class="btn btn-light" onclick="exportReport()">Export CSV Report</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="logo">🚆 RailEase</div>
+    <p>Student project demonstration — not affiliated with any railway operator.</p>
+    <p>© 2026 RailEase Reservation Demo</p>
+  </footer>
+
+  <div class="modal" id="authModal" hidden>
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeAuth()" aria-label="Close">✕</button>
+      <div class="modal-tabs">
+        <button id="loginTab" class="active" onclick="showAuth('login')">Login</button>
+        <button id="registerTab" onclick="showAuth('register')">Register</button>
+      </div>
+      <form id="authForm">
+        <h2 id="authTitle">Welcome back</h2>
+        <label id="nameField" hidden>Full name
+          <input id="fullName" autocomplete="name">
+        </label>
+        <label>Email address
+          <input id="email" type="email" autocomplete="email" required>
+        </label>
+        <label>Password
+          <input id="password" type="password" minlength="6" autocomplete="current-password" required>
+        </label>
+        <button class="btn btn-primary full-width" id="authSubmit" type="submit">Login</button>
+        <p id="authMessage" class="message"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="bookingModal" hidden>
+    <div class="modal-card wide-modal">
+      <button class="close-btn" onclick="closeBooking()" aria-label="Close">✕</button>
+      <p class="eyebrow">COMPLETE YOUR RESERVATION</p>
+      <h2>Passenger details</h2>
+      <div id="selectedTrainSummary" class="summary-box"></div>
+      <form id="bookingForm">
+        <label>Passenger name
+          <input id="passengerName" required maxlength="80">
+        </label>
+        <div class="form-row">
+          <label>Age
+            <input id="passengerAge" type="number" min="1" max="120" required>
+          </label>
+          <label>Gender
+            <select id="passengerGender" required>
+              <option value="">Select</option>
+              <option>Female</option><option>Male</option><option>Other</option>
+            </select>
+          </label>
+        </div>
+        <label>Contact email
+          <input id="passengerEmail" type="email" required>
+        </label>
+        <label>Number of passengers
+          <select id="passengerCount">
+            <option value="1">1 passenger</option>
+            <option value="2">2 passengers</option>
+            <option value="3">3 passengers</option>
+            <option value="4">4 passengers</option>
+            <option value="5">5 passengers</option>
+            <option value="6">6 passengers</option>
+          </select>
+        </label>
+        <label>Payment method
+          <select id="paymentMethod">
+            <option value="Online (demo)">Online payment (demo only)</option>
+            <option value="Pay at counter">Pay at counter (demo)</option>
+          </select>
+        </label>
+        <div class="summary-box">
+          <span>Estimated total</span>
+          <strong id="bookingTotal">₹0</strong>
+          <p class="small-note">No real payment will be collected.</p>
+        </div>
+        <button class="btn btn-primary full-width" type="submit">Confirm Demo Booking</button>
+        <p id="bookingMessage" class="message"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
