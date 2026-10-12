@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyGlide | Flight Reservation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="#" onclick="showPage('search')">✈ Sky<span>Glide</span></a>
+    <nav>
+      <button onclick="showPage('search')">Search Flights</button>
+      <button onclick="showPage('tickets')">My Tickets</button>
+      <button onclick="showPage('status')">Booking Status</button>
+      <button onclick="showPage('feedback')">Feedback</button>
+      <button onclick="showPage('admin')">Admin</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="search" class="page">
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
+          <h1>Explore the world.<br><span>Fly beyond.</span></h1>
+          <p>Discover flights, compare fares and plan your next adventure with SkyGlide.</p>
+          <button class="primary" onclick="document.getElementById('flightSearch').scrollIntoView({behavior:'smooth'})">
+            Find your flight ↗
+          </button>
+        </div>
+        <div class="hero-art">
+          <div class="orb"></div>
+          <div class="orbit"></div>
+          <div class="plane">✈</div>
+          <div class="cloud cloud1">☁</div>
+          <div class="cloud cloud2">☁</div>
+          <div class="float-label">✦ Your next adventure</div>
+        </div>
+      </div>
+
+      <div class="search-box glass" id="flightSearch">
+        <p class="eyebrow">PLAN YOUR JOURNEY</p>
+        <h2>Where would you like to go?</h2>
+        <form id="searchForm" class="search-grid">
+          <label>From
+            <select id="from">
+              <option>Chennai</option>
+              <option>Bengaluru</option>
+              <option>Mumbai</option>
+              <option>Delhi</option>
+              <option>Hyderabad</option>
+              <option>Kochi</option>
+            </select>
+          </label>
+          <button type="button" id="swap" class="swap">⇄</button>
+          <label>Destination
+            <select id="to">
+              <option>Mumbai</option>
+              <option>Delhi</option>
+              <option>Bengaluru</option>
+              <option>Chennai</option>
+              <option>Kochi</option>
+              <option>Hyderabad</option>
+            </select>
+          </label>
+          <label>Departure date
+            <input type="date" id="date" required>
+          </label>
+          <label>Travel class
+            <select id="travelClass">
+              <option>Economy</option>
+              <option>Premium Economy</option>
+              <option>Business</option>
+            </select>
+          </label>
+          <label>Passengers
+            <select id="passengers">
+              <option value="1">1 passenger</option>
+              <option value="2">2 passengers</option>
+              <option value="3">3 passengers</option>
+              <option value="4">4 passengers</option>
+              <option value="5">5 passengers</option>
+              <option value="6">6 passengers</option>
+            </select>
+          </label>
+          <button class="primary" type="submit">Search Flights ↗</button>
+        </form>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">FLIGHTS FOR YOUR ROUTE</p>
+          <h2>Available Flights</h2>
+        </div>
+        <span id="resultCount" class="pill">3 options</span>
+      </div>
+      <div id="flightResults" class="flight-grid"></div>
+    </section>
+
+    <section id="tickets" class="page hidden">
+      <p class="eyebrow">YOUR TRAVEL SPACE</p>
+      <h1>My Tickets</h1>
+      <p class="subtext">View, print or cancel your saved reservations.</p>
+      <div id="myTickets"></div>
+    </section>
+
+    <section id="status" class="page hidden">
+      <p class="eyebrow">TRIP LOOKUP</p>
+      <h1>Booking Status</h1>
+      <form id="statusForm" class="form-card glass">
+        <label>Enter your PNR / booking reference
+          <input id="pnrInput" required placeholder="Example: SG123456">
+        </label>
+        <button class="primary">Check Status ↗</button>
+      </form>
+      <div id="statusResult"></div>
+    </section>
+
+    <section id="feedback" class="page hidden">
+      <p class="eyebrow">HELP US IMPROVE</p>
+      <h1>Customer Feedback</h1>
+      <form id="feedbackForm" class="form-card glass">
+        <label>Your name
+          <input id="feedbackName" required placeholder="Enter your name">
+        </label>
+        <label>Rating
+          <select id="rating">
+            <option>Excellent</option>
+            <option>Very Good</option>
+            <option>Good</option>
+            <option>Needs Improvement</option>
+            <option>Poor</option>
+          </select>
+        </label>
+        <label>Your comments
+          <textarea id="comments" rows="4" required placeholder="Share your experience"></textarea>
+        </label>
+        <button class="primary">Submit Feedback ↗</button>
+      </form>
+      <div id="feedbackResult"></div>
+    </section>
+
+    <section id="admin" class="page hidden">
+      <p class="eyebrow">CONTROL CENTRE</p>
+      <h1>Administrator Panel</h1>
+      <div id="adminLogin" class="form-card glass">
+        <label>Username
+          <input id="adminUser" placeholder="Username">
+        </label>
+        <label>Password
+          <input id="adminPass" type="password" placeholder="Password">
+        </label>
+        <button type="button" class="primary" id="adminLoginBtn">Admin Login ↗</button>
+        <button type="button" class="text-btn" id="forgotBtn">Forgot password?</button>
+        <p class="subtext">Demo login: admin / admin123</p>
+      </div>
+
+      <div id="adminDashboard" class="hidden">
+        <div id="adminStats" class="stats-grid"></div>
+        <div class="admin-grid">
+          <form id="addFlightForm" class="form-card glass">
+            <h2>Add Flight Schedule</h2>
+            <label>Airline name
+              <input id="newAirline" required placeholder="Example: SkyGlide Air">
+            </label>
+            <label>From
+              <input id="newFrom" required placeholder="Chennai">
+            </label>
+            <label>Destination
+              <input id="newTo" required placeholder="Mumbai">
+            </label>
+            <label>Departure time
+              <input id="newDepart" required placeholder="09:00">
+            </label>
+            <label>Arrival time
+              <input id="newArrive" required placeholder="11:00">
+            </label>
+            <label>Economy fare (₹)
+              <input id="newFare" type="number" min="1" required>
+            </label>
+            <button class="primary">Add Flight ↗</button>
+          </form>
+          <div class="form-card glass">
+            <h2>Booking Report</h2>
+            <div id="adminBookings"></div>
+            <button type="button" class="secondary" id="exportBtn">Export CSV ↓</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#">✈ Sky<span>Glide</span></a>
+    <p>Explore more. Worry less.</p>
+    <small>Internet Programming Lab Project · Frontend demo only</small>
+  </footer>
+
+  <!-- Passenger booking modal -->
+  <div id="bookingModal" class="modal-backdrop hidden">
+    <div class="modal glass">
+      <button class="close" data-close="bookingModal">×</button>
+      <p class="eyebrow">RESERVE YOUR SEAT</p>
+      <h2>Passenger Details</h2>
+      <div id="selectedFlightSummary"></div>
+      <form id="bookingForm" class="form-card">
+        <label>Passenger full name
+          <input id="passengerName" required placeholder="Full name">
+        </label>
+        <label>Email address
+          <input id="passengerEmail" type="email" required placeholder="you@example.com">
+        </label>
+        <label>Phone number
+          <input id="passengerPhone" type="tel" pattern="[0-9+ -]{8,16}" required>
+        </label>
+        <label>Seat preference
+          <select id="seatPreference">
+            <option>Window</option>
+            <option>Aisle</option>
+            <option>Middle</option>
+            <option>No preference</option>
+          </select>
+        </label>
+        <p class="notice">This academic demo does not issue real tickets or collect real payments.</p>
+        <button class="primary">Continue to Payment ↗</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Simulated payment modal -->
+  <div id="paymentModal" class="modal-backdrop hidden">
+    <div class="modal glass">
+      <button class="close" data-close="paymentModal">×</button>
+      <p class="eyebrow">DEMO CHECKOUT</p>
+      <h2>Ticket Payment</h2>
+      <div id="paymentSummary" class="payment-summary"></div>
+      <form id="paymentForm" class="form-card">
+        <label>Payment method
+          <select id="paymentMethod">
+            <option>Demo card payment</option>
+            <option>UPI demo</option>
+            <option>Net banking demo</option>
+          </select>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" required>
+          I understand this is a simulated payment.
+        </label>
+        <button class="primary">Confirm Demo Payment ↗</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="confirmationModal" class="modal-backdrop hidden">
+    <div class="modal glass">
+      <button class="close" data-close="confirmationModal">×</button>
+      <div class="success-mark">✓</div>
+      <p class="eyebrow">BOOKING CONFIRMED</p>
+      <h2>Your journey awaits!</h2>
+      <div id="confirmationTicket"></div>
+      <button id="printTicketBtn" class="primary">Print Ticket ⎙</button>
+      <button id="goTicketsBtn" class="secondary">My Tickets</button>
+    </div>
+  </div>
+
+  <div id="forgotModal" class="modal-backdrop hidden">
+    <div class="modal glass">
+      <button class="close" data-close="forgotModal">×</button>
+      <h2>Password Recovery</h2>
+      <p class="subtext">Password recovery requires a backend email service. For this demo, use admin / admin123.</p>
+      <button class="primary" data-close="forgotModal">Got it</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
