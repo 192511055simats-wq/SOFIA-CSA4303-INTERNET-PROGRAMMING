@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StyleHub fashion store demo — clothing, footwear and accessories for every day.">
+  <title>StyleHub — Find your everyday style</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">THE MID-SEASON EDIT IS HERE <span>·</span> Extra 15% off selected styles with <b>STYLE15</b></div>
+  <header class="site-header wrap">
+    <a class="logo" href="#home" aria-label="StyleHub home">style<span>hub.</span></a>
+    <nav class="main-nav" aria-label="Main navigation"><a href="#shop">New in</a><a href="#shop" data-nav-category="Women">Women</a><a href="#shop" data-nav-category="Men">Men</a><a href="#shop" data-nav-category="Kids">Kids</a><a href="#offers">Offers</a></nav>
+    <div class="header-actions"><button class="icon-btn" id="searchFocus" aria-label="Focus search">⌕</button><button class="icon-btn" id="accountBtn" aria-label="Account">♙</button><button class="icon-btn" id="wishlistBtn" aria-label="Wishlist">♡<span class="count" id="wishCount">0</span></button><button class="icon-btn bag-btn" id="cartBtn" aria-label="Shopping bag">Bag <span class="count" id="cartCount">0</span></button></div>
+  </header>
+  <main id="home" class="wrap">
+    <section class="hero">
+      <div class="hero-copy"><span class="eyebrow">THE NEW-SEASON EDIT · 2026</span><h1>Wear what<br>moves <em>you.</em></h1><p>Easy layers, considered details and pieces that feel like you. Meet the new collection made for wherever the day takes you.</p><div class="hero-actions"><button class="btn btn-dark" id="shopNow">Shop the collection ↗</button><a class="text-link" href="#categories">Explore categories <span>→</span></a></div><div class="hero-note"><span class="tiny-dot"></span> Thoughtful finds for every kind of day</div></div>
+      <div class="hero-visual" role="img" aria-label="Fashion editorial illustration featuring clothing on a warm neutral background"><div class="sun-disc"></div><div class="arch"></div><div class="model-shape"><div class="model-head"></div><div class="model-neck"></div><div class="model-top"></div><div class="model-skirt"></div><div class="model-arm"></div><div class="model-leg leg-one"></div><div class="model-leg leg-two"></div><div class="model-bag"></div></div><div class="hero-sticker">NEW<br><b>SEASON</b></div><div class="hero-caption">01 / THE EVERYDAY EDIT</div></div>
+    </section>
+    <section id="categories" class="section"><div class="section-heading"><div><span class="eyebrow">A GOOD PLACE TO START</span><h2>Shop your way</h2></div><p>From everyday essentials to<br>something a little extra.</p></div><div class="category-grid" id="categoryGrid"></div></section>
+    <section id="shop" class="section products-section"><div class="section-heading"><div><span class="eyebrow">FRESH FINDS, GOOD FEELINGS</span><h2 id="productHeading">Trending this week</h2><p class="muted" id="resultSummary">Pieces customers are loving right now.</p></div><button class="btn btn-light" id="clearAll">View all items ↗</button></div>
+      <div class="toolbar"><label class="search-field"><span>⌕</span><input id="searchInput" type="search" placeholder="Search clothes, shoes, accessories…" aria-label="Search products"><button id="clearSearch" aria-label="Clear search">×</button></label><div class="filter-controls"><select id="audienceFilter" aria-label="Shop by audience"><option value="All">All collections</option><option>Women</option><option>Men</option><option>Kids</option></select><select id="typeFilter" aria-label="Shop by type"><option value="All">All categories</option><option>Clothing</option><option>Footwear</option><option>Accessories</option></select><select id="sizeFilter" aria-label="Filter by size"><option value="All">All sizes</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>One size</option></select><select id="stockFilter" aria-label="Filter availability"><option value="all">Availability</option><option value="in">In stock</option><option value="out">Out of stock</option></select><select id="sortFilter" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="rating">Top rated</option></select></div></div>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+    <section class="editorial"><div class="editorial-art"><div class="editorial-sun"></div><div class="editorial-coat"></div><span>STYLE NOTE Nº 04</span></div><div class="editorial-copy"><span class="eyebrow">LESS, BUT BETTER</span><h2>Build a wardrobe<br>that feels like <em>you.</em></h2><p>Start with pieces that work hard: a great shirt, your go-to denim, shoes you can walk all day in. Mix, match, repeat.</p><button class="btn btn-dark" id="essentialsBtn">Shop the essentials ↗</button></div></section>
+    <section class="promo" id="offers"><div><span class="eyebrow">A LITTLE TREAT FROM US</span><h2>Good style. Better price.</h2><p>Take 15% off selected styles and make room for something new.</p></div><div class="promo-code">CODE <b>STYLE15</b> <button id="copyCode" class="btn btn-light">Copy code</button></div></section>
+    <section class="benefits"><div><span>↗</span><b>Easy returns</b><small>30-day return window in this demo</small></div><div><span>◇</span><b>Thoughtful picks</b><small>Styles for every kind of day</small></div><div><span>♡</span><b>Save your favorites</b><small>Build a wishlist as you browse</small></div><div><span>□</span><b>Order updates</b><small>Track sample orders in your account</small></div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-inner"><a class="logo" href="#home">style<span>hub.</span></a><p>Wear what moves you. © <span id="year"></span> StyleHub demo store.</p><div><button id="ordersLink" class="footer-link">Order history</button><button id="adminLink" class="footer-link">Admin tools</button></div></div><div class="wrap footer-note">Educational front-end demo · No real payments are processed · Data is stored in this browser</div></footer>
+  <div id="overlay" class="overlay"></div><aside id="drawer" class="drawer" aria-label="Shopping bag"><div class="drawer-header"><h2 id="drawerTitle">Your bag</h2><button class="close-btn" id="closeDrawer" aria-label="Close bag">×</button></div><div id="drawerContent"></div></aside>
+  <section id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><h2 id="modalTitle">StyleHub</h2><button class="close-btn" id="closeModal" aria-label="Close dialog">×</button></div><div id="modalContent"></div></section><div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body></html>
