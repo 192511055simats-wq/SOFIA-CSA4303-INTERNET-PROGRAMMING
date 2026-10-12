@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedCare | Appointment Booking</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#" class="brand">
+            <span class="brand-icon">✚</span>
+            <span>MedCare<span class="brand-light">.</span>
+                <small>HEALTHCARE SERVICES</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#booking">Book Appointment</a>
+            <a href="#appointments">My Appointments</a>
+        </nav>
+
+        <a href="#booking" class="nav-button">Book a Visit ↗</a>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="eyebrow">YOUR HEALTH, OUR PRIORITY</span>
+                <h1>Better care.<br>Better <span>living.</span></h1>
+                <p>
+                    Find the right doctor, choose a convenient time,
+                    and schedule your healthcare visit in just a few steps.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#booking" class="primary-button">Book an Appointment →</a>
+                    <a href="#appointments" class="text-button">View appointments ↓</a>
+                </div>
+
+                <div class="hero-note">
+                    <span class="note-icon">✓</span>
+                    Simple booking · Convenient scheduling · Easy tracking
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <img
+                    src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=1000&q=85"
+                    alt="Doctor ready to provide healthcare"
+                >
+                <div class="floating-card">
+                    <span class="floating-icon">✚</span>
+                    <div>
+                        <strong>Care made simple</strong>
+                        <small>Schedule your next visit online</small>
+                    </div>
+                </div>
+                <div class="visual-caption">COMPASSIONATE CARE. EVERY DAY.</div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat-item">
+                <span class="stat-icon">▦</span>
+                <div>
+                    <strong id="totalCount">0</strong>
+                    <small>Total appointments</small>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">◷</span>
+                <div>
+                    <strong id="upcomingCount">0</strong>
+                    <small>Upcoming visits</small>
+                </div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">✓</span>
+                <div>
+                    <strong id="cancelledCount">0</strong>
+                    <small>Cancelled bookings</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking-section section" id="booking">
+            <div class="section-heading">
+                <span class="eyebrow">QUICK AND EASY SCHEDULING</span>
+                <h2>Book your appointment</h2>
+                <p>Enter your details and select a suitable hospital, doctor, and time.</p>
+            </div>
+
+            <div class="booking-layout">
+                <form id="appointmentForm" class="booking-form">
+                    <div class="form-title">
+                        <div>
+                            <span class="step-label">APPOINTMENT DETAILS</span>
+                            <h3>Let's get you scheduled</h3>
+                        </div>
+                        <span class="form-symbol">✚</span>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="patientName">Patient name *</label>
+                            <input
+                                type="text"
+                                id="patientName"
+                                placeholder="Enter your full name"
+                                maxlength="80"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="phone">Phone number *</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="10-digit mobile number"
+                                pattern="[6-9][0-9]{9}"
+                                maxlength="10"
+                                title="Enter a valid 10-digit Indian mobile number"
+                                required
+                            >
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="email">Email address *</label>
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="you@example.com"
+                                maxlength="120"
+                                required
+                            >
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="hospital">Select hospital *</label>
+                            <select id="hospital" required>
+                                <option value="">Choose a hospital</option>
+                                <option value="MedCare Central Hospital">
+                                    MedCare Central Hospital
+                                </option>
+                                <option value="MedCare City Clinic">
+                                    MedCare City Clinic
+                                </option>
+                                <option value="MedCare Specialty Centre">
+                                    MedCare Specialty Centre
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="doctor">Choose a doctor *</label>
+                            <select id="doctor" required disabled>
+                                <option value="">Select a hospital first</option>
+                            </select>
+                            <small id="doctorInfo" class="field-help">
+                                Doctor details will appear after selecting a hospital.
+                            </small>
+                        </div>
+
+                        <div class="field">
+                            <label for="date">Appointment date *</label>
+                            <input type="date" id="date" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="time">Available time *</label>
+                            <select id="time" required disabled>
+                                <option value="">Select a date first</option>
+                            </select>
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="type">Appointment type *</label>
+                            <select id="type" required>
+                                <option value="General Consultation">General Consultation</option>
+                                <option value="Follow-up Visit">Follow-up Visit</option>
+                                <option value="Routine Check-up">Routine Check-up</option>
+                                <option value="Specialist Consultation">Specialist Consultation</option>
+                            </select>
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="reason">Reason for visit</label>
+                            <textarea
+                                id="reason"
+                                rows="3"
+                                maxlength="300"
+                                placeholder="Briefly describe the reason for your visit (optional)"
+                            ></textarea>
+                        </div>
+                    </div>
+
+                    <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+
+                    <button type="submit" class="primary-button submit-button">
+                        Confirm Appointment <span>→</span>
+                    </button>
+
+                    <p class="privacy-note">Your information is stored in this browser for this demonstration.</p>
+                </form>
+
+                <aside class="booking-aside">
+                    <div class="aside-card doctor-card">
+                        <span class="aside-eyebrow">YOUR HEALTHCARE JOURNEY</span>
+                        <div class="doctor-placeholder">✚</div>
+                        <h3 id="previewDoctor">Your doctor awaits</h3>
+                        <p id="previewSpecialty">
+                            Choose a hospital and doctor to see their details here.
+                        </p>
+                        <div class="aside-divider"></div>
+                        <div class="detail-row">
+                            <span>Location</span>
+                            <strong id="previewHospital">Not selected</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Consultation</span>
+                            <strong id="previewType">General Consultation</strong>
+                        </div>
+                    </div>
+
+                    <div class="help-card">
+                        <span class="help-icon">i</span>
+                        <div>
+                            <strong>Need assistance?</strong>
+                            <p>For this student project, bookings are demonstrations only. No real hospital appointment is created.</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="appointments-section section" id="appointments">
+            <div class="appointments-heading">
+                <div class="section-heading">
+                    <span class="eyebrow">YOUR SCHEDULE</span>
+                    <h2>Appointment dashboard</h2>
+                    <p>View, search, and manage the appointments saved in this browser.</p>
+                </div>
+                <button type="button" id="refreshButton" class="outline-button">↻ Refresh</button>
+            </div>
+
+            <div class="toolbar">
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input
+                        type="search"
+                        id="hospitalSearch"
+                        placeholder="Search patient, doctor, or hospital..."
+                    >
+                </div>
+
+                <select id="statusFilter" aria-label="Filter appointments by status">
+                    <option value="all">All appointments</option>
+                    <option value="upcoming">Upcoming</option>
+                    <option value="past">Past appointments</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+
+            <div id="appointmentList" class="appointment-list"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <a href="#home" class="brand footer-brand">
+            <span class="brand-icon">✚</span>
+            <span>MedCare<span class="brand-light">.</span>
+                <small>HEALTHCARE SERVICES</small>
+            </span>
+        </a>
+        <p>Designed for a student Internet Programming project.</p>
+        <span>© 2026 MedCare Demo</span>
+    </footer>
+
+</body>
+</html>
