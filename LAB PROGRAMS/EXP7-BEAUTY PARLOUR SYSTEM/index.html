@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glamora | Beauty & Beyond</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="#home" class="logo">✿ glam<span>ora</span></a>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#stylists">Our Experts</a>
+        <a href="#booking">Book Now</a>
+        <a href="#dashboard">My Bookings</a>
+    </nav>
+
+    <div class="nav-buttons">
+        <button class="btn-light" onclick="openLogin()">Login</button>
+        <button class="btn-primary" onclick="goToBooking()">Book a Visit ↗</button>
+    </div>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <div class="hero-copy">
+            <span class="eyebrow">♡ YOUR SELF-CARE ERA STARTS HERE</span>
+            <h1>Glow like you<br>mean <span>it.</span></h1>
+            <p>
+                A little pampering, a lot of confidence. Discover your
+                favourite beauty services and book your perfect salon moment.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn-primary big-btn" onclick="goToBooking()">
+                    Book an Appointment ✨
+                </button>
+                <a href="#services" class="text-link">Explore services →</a>
+            </div>
+
+            <div class="hero-rating">
+                <div class="avatar-stack">
+                    <span>🌸</span><span>💅</span><span>💗</span>
+                </div>
+                <div>
+                    <strong>Made for your glow</strong>
+                    <small>Beauty, care & confidence</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-blob"></div>
+            <img class="hero-image"
+                src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1100&q=85"
+                alt="Beautiful modern beauty salon">
+            <div class="float-tag tag-top">♡ Your glow, your way</div>
+            <div class="float-tag tag-bottom">✨ Me-time booked!</div>
+            <span class="decor decor-one">✦</span>
+            <span class="decor decor-two">♡</span>
+            <span class="decor decor-three">✿</span>
+        </div>
+    </section>
+
+    <section class="trust-strip">
+        <div>💗 <span><b>Expert Stylists</b><small>Beauty professionals</small></span></div>
+        <div>🗓️ <span><b>Easy Booking</b><small>Choose your time</small></span></div>
+        <div>🌷 <span><b>Personalised Care</b><small>Made for you</small></span></div>
+        <div>✨ <span><b>Feel-Good Moments</b><small>Your time to shine</small></span></div>
+    </section>
+
+    <section class="section services-section" id="services">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">A LITTLE SOMETHING FOR YOU</span>
+                <h2>Find your <span>glow</span></h2>
+                <p>From a fresh trim to a full self-care day.</p>
+            </div>
+            <span class="cute-note">You deserve this ♡</span>
+        </div>
+
+        <div class="service-tools">
+            <input id="serviceSearch" type="search"
+                placeholder="🔍 Search facials, hair, nails..."
+                oninput="renderServices()">
+
+            <select id="serviceCategory" onchange="renderServices()">
+                <option value="All">All services</option>
+                <option value="Hair">Hair</option>
+                <option value="Skin">Skin & Facial</option>
+                <option value="Nails">Nails</option>
+                <option value="Makeup">Makeup</option>
+                <option value="Spa">Spa</option>
+            </select>
+
+            <select id="serviceSort" onchange="renderServices()">
+                <option value="default">Sort: Recommended</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+            </select>
+        </div>
+
+        <div class="service-grid" id="serviceGrid"></div>
+    </section>
+
+    <section class="stylist-section section" id="stylists">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">MEET YOUR BEAUTY BESTIES</span>
+                <h2>Our lovely <span>experts</span></h2>
+                <p>Choose the professional you feel most comfortable with.</p>
+            </div>
+        </div>
+
+        <div class="stylist-grid" id="stylistGrid"></div>
+    </section>
+
+    <section class="booking-section section" id="booking">
+        <div class="booking-intro">
+            <span class="eyebrow">YOUR NEXT GLOW-UP</span>
+            <h2>Let's make a<br><span>date, darling.</span></h2>
+            <p>
+                Choose your service, favourite stylist, and preferred
+                appointment time. Your self-care moment is just a few clicks away.
+            </p>
+            <div class="booking-tip">
+                <span>🌸</span>
+                <div>
+                    <strong>A little planning, a lot of pampering</strong>
+                    <small>Choose a date to see available demo slots.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="booking-card">
+            <h3>Book your appointment <span>♡</span></h3>
+
+            <form id="bookingForm">
+                <label>Choose a service
+                    <select id="bookingService" required></select>
+                </label>
+
+                <label>Choose your stylist
+                    <select id="bookingStylist" required></select>
+                </label>
+
+                <label>Appointment date
+                    <input type="date" id="bookingDate" required>
+                </label>
+
+                <label>Available time
+                    <select id="bookingTime" required>
+                        <option value="">Select a date first</option>
+                    </select>
+                </label>
+
+                <div class="booking-summary" id="bookingSummary">
+                    Select a service to see the price.
+                </div>
+
+                <div class="payment-choice">
+                    <label>Payment option</label>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="full" checked>
+                            <span>Full payment</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="deposit">
+                            <span>30% deposit</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary full-btn">
+                    Confirm Appointment ✨
+                </button>
+                <p class="small-note">
+                    Demo checkout only. No real payment will be collected.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <section class="calendar-section section" id="calendar">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">PLAN YOUR ME-TIME</span>
+                <h2>Reservation <span>calendar</span></h2>
+                <p>See your appointments and unavailable time slots.</p>
+            </div>
+            <div class="calendar-controls">
+                <button class="round-btn" onclick="changeMonth(-1)">←</button>
+                <strong id="calendarMonth"></strong>
+                <button class="round-btn" onclick="changeMonth(1)">→</button>
+            </div>
+        </div>
+
+        <div class="calendar-card">
+            <div class="calendar-legend">
+                <span><i class="legend-dot booked"></i> Booked</span>
+                <span><i class="legend-dot blocked"></i> Unavailable</span>
+                <span><i class="legend-dot free"></i> Available</span>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+            <div class="date-details" id="dateDetails">
+                Select a date to view its appointment details.
+            </div>
+        </div>
+    </section>
+
+    <section class="dashboard-section section" id="dashboard">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">YOUR PERSONAL BEAUTY SPACE</span>
+                <h2>My <span>appointments</span></h2>
+                <p>View upcoming visits, booking history, and manage reservations.</p>
+            </div>
+            <button class="btn-light" onclick="openLogin()">Login / Register</button>
+        </div>
+
+        <div class="account-panel" id="accountPanel"></div>
+        <div class="appointment-list" id="appointmentList"></div>
+    </section>
+
+    <section class="manager-section section" id="manager">
+        <div class="section-heading">
+            <div>
+                <span class="eyebrow">SALON TEAM</span>
+                <h2>Manager <span>corner</span></h2>
+                <p>Manage reservations, block unavailable slots, and contact customers.</p>
+            </div>
+            <span class="manager-badge">Demo manager access</span>
+        </div>
+
+        <div class="manager-login" id="managerLogin">
+            <p>Open the salon manager panel to manage appointments.</p>
+            <button class="btn-primary" onclick="managerSignIn()">Open Manager Panel</button>
+            <small>Demo PIN: <b>2468</b></small>
+        </div>
+
+        <div id="managerPanel" class="hidden">
+            <div class="manager-toolbar">
+                <label>Manage date
+                    <input type="date" id="managerDate">
+                </label>
+                <label>Block time slot
+                    <select id="blockTime"></select>
+                </label>
+                <button class="btn-primary" onclick="blockSlot()">Block Slot</button>
+                <button class="btn-light" onclick="managerSignOut()">Close Panel</button>
+            </div>
+            <div id="managerReservations" class="manager-reservations"></div>
+        </div>
+    </section>
+
+    <section class="feedback-section section" id="feedback">
+        <div class="feedback-copy">
+            <span class="eyebrow">TELL US, BEAUTY</span>
+            <h2>Your feedback<br>makes us <span>better.</span></h2>
+            <p>Share your salon experience. We love hearing what made you feel amazing.</p>
+        </div>
+
+        <form id="feedbackForm" class="feedback-card">
+            <label>Your rating
+                <select id="feedbackRating" required>
+                    <option value="5">★★★★★ - Loved it!</option>
+                    <option value="4">★★★★☆ - Great</option>
+                    <option value="3">★★★☆☆ - Good</option>
+                    <option value="2">★★☆☆☆ - Could improve</option>
+                    <option value="1">★☆☆☆☆ - Needs improvement</option>
+                </select>
+            </label>
+            <label>Your comments
+                <textarea id="feedbackText" required
+                    placeholder="Tell us about your experience..."></textarea>
+            </label>
+            <button class="btn-primary full-btn" type="submit">Send Feedback 💌</button>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <a href="#home" class="logo">✿ glam<span>ora</span></a>
+    <p>Your beauty. Your moment. Your glow.</p>
+    <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#booking">Book</a>
+        <a href="#dashboard">My Appointments</a>
+        <a href="#manager">Manager</a>
+    </div>
+    <small>Internet Programming Lab · Frontend demonstration</small>
+</footer>
+
+<!-- Login / Registration -->
+<div class="modal" id="authModal">
+    <div class="modal-card">
+        <button class="close-btn" onclick="closeModal('authModal')">×</button>
+        <div class="modal-emoji">💗</div>
+        <h2 id="authTitle">Welcome, lovely!</h2>
+        <p>Sign in to manage your beauty appointments.</p>
+
+        <form id="authForm">
+            <input id="authName" placeholder="Your name" class="hidden">
+            <input type="email" id="authEmail" placeholder="Email address" required>
+            <input type="password" id="authPassword" placeholder="Password"
+                minlength="4" required>
+            <button class="btn-primary full-btn" type="submit" id="authSubmit">Login</button>
+        </form>
+
+        <p class="auth-switch">
+            <span id="authSwitchText">New here?</span>
+            <button onclick="toggleAuth()" type="button" id="authSwitch">Create account</button>
+        </p>
+        <p id="authMessage" class="form-message"></p>
+    </div>
+</div>
+
+<!-- Appointment details / rescheduling -->
+<div class="modal" id="editModal">
+    <div class="modal-card">
+        <button class="close-btn" onclick="closeModal('editModal')">×</button>
+        <div class="modal-emoji">🗓️</div>
+        <h2>Change your visit</h2>
+        <p>Select a new date and time for your appointment.</p>
+        <form id="editForm">
+            <input type="hidden" id="editBookingId">
+            <label>New date
+                <input type="date" id="editDate" required>
+            </label>
+            <label>New time
+                <select id="editTime" required></select>
+            </label>
+            <button class="btn-primary full-btn" type="submit">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
