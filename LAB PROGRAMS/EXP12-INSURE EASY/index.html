@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsureEasy - Insurance Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="#" class="logo">Insure<span>Easy</span></a>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#policies">Policies</a>
+        <a href="#dashboard">Dashboard</a>
+    </nav>
+    <div>
+        <button class="btn light" onclick="showLogin()">Login</button>
+        <button class="btn" onclick="showRegister()">Register</button>
+    </div>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-text">
+        <span class="tag">INSURANCE MADE SIMPLE</span>
+        <h1>Protect what matters.<br><span>Live with confidence.</span></h1>
+        <p>Compare insurance policies, manage your coverage and
+           stay updated with renewal reminders — all in one place.</p>
+        <a href="#policies" class="btn hero-btn">Explore Policies ↗</a>
+    </div>
+
+    <div class="hero-art">
+        <div class="circle"></div>
+        <div class="shield">✓</div>
+        <div class="floating-card card-one">✓ Policy protected</div>
+        <div class="floating-card card-two">◷ Renewal reminder</div>
+    </div>
+</section>
+
+<section class="stats">
+    <div><h2>03</h2><p>Insurance categories</p></div>
+    <div><h2>24/7</h2><p>Policy information access</p></div>
+    <div><h2>One place</h2><p>Manage your policies</p></div>
+</section>
+
+<section class="section" id="policies">
+    <div class="section-heading">
+        <span class="tag">OUR COVERAGE</span>
+        <h2>Find the right <span>protection.</span></h2>
+        <p>Explore sample plans and compare their features.</p>
+    </div>
+
+    <div class="filters">
+        <input type="search" id="searchPolicy"
+               placeholder="Search policies..." oninput="renderPolicies()">
+        <select id="categoryFilter" onchange="renderPolicies()">
+            <option value="All">All categories</option>
+            <option value="Health">Health</option>
+            <option value="Auto">Auto</option>
+            <option value="Home">Home</option>
+        </select>
+    </div>
+
+    <div class="policy-grid" id="policyGrid"></div>
+    <div class="compare-box" id="compareBox">
+        <h3>Policy comparison</h3>
+        <div id="compareContent">Select plans using the Compare checkbox.</div>
+    </div>
+</section>
+
+<section class="section dashboard-section" id="dashboard">
+    <div class="section-heading">
+        <span class="tag">YOUR WORKSPACE</span>
+        <h2>Insurance <span>dashboard.</span></h2>
+        <p>Manage policies, customers, agents and reminders.</p>
+    </div>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="profile-icon" id="profileIcon">G</div>
+                <div><strong id="profileName">Guest</strong>
+                    <small id="profileRole">Preview mode</small></div>
+            </div>
+
+            <button class="side-link active" onclick="openView('overview',this)">▦ Overview</button>
+            <button class="side-link" onclick="openView('policies',this)">▤ My Policies</button>
+            <button class="side-link" onclick="openView('customers',this)">♙ Customers</button>
+            <button class="side-link" onclick="openView('agents',this)">◎ Agent Approvals</button>
+            <button class="side-link" onclick="openView('reminders',this)">◷ SMS Reminders</button>
+            <button class="side-link logout" onclick="logout()">↪ Logout</button>
+        </aside>
+
+        <div class="dashboard-main">
+            <div class="dashboard-heading">
+                <div>
+                    <h3 id="viewTitle">Welcome to InsureEasy</h3>
+                    <p id="viewDescription">Your insurance information at a glance.</p>
+                </div>
+                <button class="btn" id="mainAction" onclick="mainAction()">+ Add Policy</button>
+            </div>
+            <div id="dashboardContent"></div>
+        </div>
+    </div>
+</section>
+
+<section class="section how-section">
+    <div class="section-heading">
+        <span class="tag">SIMPLE PROCESS</span>
+        <h2>Insurance in <span>three steps.</span></h2>
+    </div>
+    <div class="steps">
+        <article><div class="step-icon">⌕</div><h3>Compare</h3>
+            <p>Review sample policies and compare premiums and coverage.</p></article>
+        <article><div class="step-icon">▤</div><h3>Manage</h3>
+            <p>Keep policy and customer information organised.</p></article>
+        <article><div class="step-icon">◷</div><h3>Get reminders</h3>
+            <p>Create simulated reminders for upcoming premium dates.</p></article>
+    </div>
+</section>
+
+<footer>
+    <a href="#" class="logo">Insure<span>Easy</span></a>
+    <p>Insurance management made simpler.</p>
+    <small>© 2026 InsureEasy · Educational demonstration</small>
+</footer>
+
+<!-- Login and registration modal -->
+<div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal">
+        <button class="close" onclick="closeModal()">×</button>
+        <div class="modal-logo">i</div>
+        <span class="tag" id="modalTag">WELCOME BACK</span>
+        <h2 id="modalTitle">Login</h2>
+        <p id="modalDescription">Access your insurance dashboard.</p>
+        <div id="modalForm"></div>
+        <div id="modalSwitch"></div>
+    </div>
+</div>
+
+<div id="toastArea" class="toast-area"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
