@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyToll | Smart Toll Payments</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="#">EASY<span>TOLL</span></a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#dashboard">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn light" id="loginBtn">Login</button>
+      <button class="btn primary" id="registerBtn">Register ↗</button>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="eyebrow">SMARTER TRAVEL STARTS HERE</span>
+      <h1>Toll payments,<br><span>without the wait.</span></h1>
+      <p>Manage toll passes, recharge your wallet, and keep every journey moving with EasyToll.</p>
+      <button class="btn primary large" onclick="goDashboard()">Explore Dashboard ↗</button>
+      <div class="trust"><span>✓</span> One dashboard for your toll journey</div>
+    </div>
+    <div class="hero-art">
+      <div class="orbit"></div>
+      <div class="wallet">
+        <div class="wallet-top"><span>◉ EASYTOLL WALLET</span><span>•••</span></div>
+        <p>Available balance</p>
+        <h2 id="heroBalance">₹2,450.00</h2>
+        <div class="wallet-card">
+          <div>EASYTOLL PASS <b>◈</b></div>
+          <h3>•••• &nbsp; •••• &nbsp; 8042</h3>
+          <small>ROAD READY</small>
+        </div>
+        <div class="wallet-bottom"><span>＋ Add Money</span><span>▣ My Pass</span><span>↗ History</span></div>
+      </div>
+      <div class="float-note note-one">✓ &nbsp; Pass approved</div>
+      <div class="float-note note-two">♢ &nbsp; Secure demo wallet</div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><strong>24/7</strong><span>Account access</span></div>
+    <div><strong>01</strong><span>Smart dashboard</span></div>
+    <div><strong>0</strong><span>Unnecessary queues</span></div>
+    <div><strong>100%</strong><span>Journey visibility</span></div>
+  </section>
+
+  <section class="features section" id="features">
+    <span class="eyebrow">BUILT FOR THE ROAD</span>
+    <h2>Everything you need.<br><span>Nothing in your way.</span></h2>
+    <p class="section-desc">Your toll journey, organised in one simple place.</p>
+    <div class="feature-grid">
+      <article class="feature"><div class="feature-icon">◈</div><h3>Smart Wallet</h3><p>Add demo funds and monitor your available balance instantly.</p></article>
+      <article class="feature"><div class="feature-icon">▣</div><h3>Digital Toll Pass</h3><p>Apply for new passes and renew your existing vehicle passes.</p></article>
+      <article class="feature"><div class="feature-icon">⌁</div><h3>QR Reference</h3><p>Generate a demo QR reference and verify pass IDs at a gate.</p></article>
+      <article class="feature"><div class="feature-icon">◷</div><h3>Trip History</h3><p>Review toll crossings and wallet transactions in one place.</p></article>
+    </div>
+  </section>
+
+  <section class="section how">
+    <span class="eyebrow">THREE SIMPLE STEPS</span>
+    <h2>Get moving in <span>a few clicks.</span></h2>
+    <div class="steps">
+      <div><b>01</b><h3>Create an account</h3><p>Register and set up your driver profile.</p></div>
+      <div><b>02</b><h3>Load your wallet</h3><p>Add demo funds and apply for a toll pass.</p></div>
+      <div><b>03</b><h3>Travel with confidence</h3><p>Check your pass and monitor your activity.</p></div>
+    </div>
+  </section>
+
+  <section class="section dashboard-section" id="dashboard">
+    <div class="dashboard-heading">
+      <div><span class="eyebrow">YOUR CONTROL CENTRE</span><h2>Your EasyToll <span>dashboard.</span></h2></div>
+      <label>Preview role
+        <select id="roleSelect">
+          <option value="user">User / Driver</option>
+          <option value="admin">Administrator</option>
+          <option value="officer">Toll Gate Officer</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="dashboard">
+      <aside class="sidebar">
+        <div class="side-logo">E <b>EasyToll</b></div>
+        <div class="profile"><div class="avatar" id="avatar">D</div><div><b id="profileName">Demo Driver</b><small id="profileRole">Driver account</small></div></div>
+        <button class="side-link active" data-page="overview">◫ &nbsp; Overview</button>
+        <button class="side-link" data-page="passes">▣ &nbsp; Toll Passes</button>
+        <button class="side-link" data-page="transactions">↗ &nbsp; Transactions</button>
+        <button class="side-link" data-page="gate">⌁ &nbsp; Gate Verification</button>
+        <button class="side-link" data-page="management">⚙ &nbsp; Management</button>
+        <div class="demo-status">● Demo environment</div>
+      </aside>
+
+      <div class="dash-main">
+        <div class="dash-top">
+          <div><h3 id="greeting">Good day, Driver 👋</h3><p id="dashDescription">Here is what's happening with your account.</p></div>
+          <button class="btn light" id="refreshBtn">↻ Refresh</button>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric"><span>Wallet balance</span><h2 id="balance">₹2,450</h2><small>● Available to use</small><button id="addMoneyBtn" class="mini-btn">+ Add money</button></div>
+          <div class="metric"><span>Active toll passes</span><h2 id="passCount">02</h2><small>Ready for your next trip</small></div>
+          <div class="metric"><span>Toll transactions</span><h2 id="tripCount">03</h2><small>Your recent activity</small></div>
+        </div>
+
+        <div class="dash-grid">
+          <div class="panel">
+            <div class="panel-heading"><div><h3 id="listHeading">Recent transactions</h3><p>Your latest wallet activity</p></div><button class="text-btn" id="viewAllBtn">View all ↗</button></div>
+            <div id="transactionList"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-heading"><div><h3>My toll pass</h3><p>Your digital travel pass</p></div><span class="pill">● Active</span></div>
+            <div class="digital-pass">
+              <div class="pass-top">EASYTOLL PASS <b>E</b></div>
+              <h3 id="passId">ET-2048-8042</h3>
+              <small>VEHICLE NUMBER</small>
+              <h4 id="vehicleId">TN 09 AB 2048</h4>
+              <div class="pass-foot">DEMO PASS <span>)))</span></div>
+            </div>
+            <button class="btn outline full" id="applyPassBtn">＋ Apply / Renew Pass</button>
+            <button class="btn outline full hidden" id="verifyShortcut">Verify Pass ID</button>
+          </div>
+        </div>
+
+        <div class="panel extra-panel hidden" id="extraPanel">
+          <div class="panel-heading"><div><h3 id="extraHeading">Management</h3><p id="extraDescription">Available tools for this role</p></div></div>
+          <div id="extraContent" class="extra-content"></div>
+        </div>
+
+        <div class="panel extra-panel hidden" id="verifyPanel">
+          <div class="panel-heading"><div><h3>Gate verification</h3><p>Verify a demo pass or ticket ID</p></div></div>
+          <form id="verifyForm" class="verify-form">
+            <input id="verifyInput" placeholder="Enter pass ID, e.g. ET-2048-8042" required>
+            <button class="btn primary">Verify ID</button>
+          </form>
+          <div id="verifyResult"></div>
+          <small class="disclaimer">Verification is simulated locally and does not authorize real toll access.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div><span class="eyebrow">YOUR NEXT JOURNEY STARTS HERE</span><h2>Less waiting.<br>More <span>living.</span></h2><p>Make your next drive easier with EasyToll.</p><button class="btn white" id="ctaRegister">Create your account ↗</button></div>
+    <div class="road-art"><span>🚙</span><i>⌖</i></div>
+  </section>
+
+  <footer><a class="logo" href="#">EASY<span>TOLL</span></a><p>© 2026 EasyToll — Student project demo</p><a href="#home">Back to top ↑</a></footer>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <button class="close" id="closeModal">×</button>
+      <div class="modal-logo">E</div><span class="eyebrow">WELCOME TO EASYTOLL</span>
+      <h2 id="modalTitle">Create your account</h2><p id="modalDescription">A smoother journey starts with you.</p>
+      <form id="accountForm">
+        <div id="nameField"><label for="fullName">Full name</label><input id="fullName" placeholder="Your name"></div>
+        <label for="email">Email address</label><input id="email" type="email" placeholder="you@example.com" required>
+        <label for="password">Password</label><input id="password" type="password" minlength="4" placeholder="At least 4 characters" required>
+        <div id="vehicleField"><label for="vehicle">Vehicle number</label><input id="vehicle" placeholder="TN 09 AB 2048"></div>
+        <button class="btn primary full" id="submitAccount">Create account ↗</button>
+      </form>
+      <p class="switch-text" id="switchText">Already registered? <button id="switchMode">Login</button></p>
+      <small class="disclaimer">Demo project only. Do not use real passwords or payment details.</small>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
