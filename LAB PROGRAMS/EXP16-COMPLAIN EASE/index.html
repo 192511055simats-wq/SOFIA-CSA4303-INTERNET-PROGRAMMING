@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123d32">
+  <title>ComplainEase | Complaint Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="#" class="brand"><span class="brand-icon">C</span> Complain<span>Ease</span></a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#dashboard">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-light" id="loginBtn">Login</button>
+      <button class="btn btn-primary" id="registerBtn">Get Started ↗</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> YOUR VOICE MATTERS</div>
+        <h1>Every concern<br>deserves a <span>solution.</span></h1>
+        <p>Report issues, track progress, and connect with resolution teams through one simple and transparent complaint management platform.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" id="heroReport">Report a complaint ↗</button>
+          <a class="btn btn-light btn-lg" href="#dashboard">Explore dashboard ↓</a>
+        </div>
+        <div class="trust"><span>✓</span> Simple reporting <span>✓</span> Transparent tracking <span>✓</span> Accountable resolution</div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="floating-tag tag-top">✓ Complaint received</div>
+        <div class="report-card">
+          <div class="report-head"><span>COMPLAINT OVERVIEW</span><span class="live">● LIVE DEMO</span></div>
+          <div class="report-icon">✦</div>
+          <h3>Good things start with being heard.</h3>
+          <p>Your concerns, organised and moving towards resolution.</p>
+          <div class="progress-label"><span>Resolution progress</span><b>75%</b></div>
+          <div class="progress"><span></span></div>
+          <div class="report-foot"><span>CE-2026-0142</span><span class="status status-progress">In progress</span></div>
+        </div>
+        <div class="floating-tag tag-bottom"><span class="tag-check">✓</span><span><b>Issue tracked</b><small>Every step matters</small></span></div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div><strong>01</strong><span>Submit your concern</span></div>
+      <div><strong>02</strong><span>Track every update</span></div>
+      <div><strong>03</strong><span>Receive a resolution</span></div>
+      <div><strong>04</strong><span>Share your feedback</span></div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="eyebrow centered">BUILT AROUND YOUR NEEDS</div>
+      <h2>One platform. <span>Real accountability.</span></h2>
+      <p class="section-subtitle">Tools that make complaint handling clear, organised, and accessible.</p>
+      <div class="feature-grid">
+        <article class="feature-card"><div class="feature-icon">✎</div><h3>Easy complaint filing</h3><p>Submit a complaint with a category, description, location, and supporting evidence.</p></article>
+        <article class="feature-card"><div class="feature-icon">⌖</div><h3>Location reporting</h3><p>Include a location or open Google Maps to help teams identify the issue.</p></article>
+        <article class="feature-card"><div class="feature-icon">↗</div><h3>Live status tracking</h3><p>Follow complaint progress and review updates recorded by the assigned officer.</p></article>
+        <article class="feature-card"><div class="feature-icon">♡</div><h3>Feedback and support</h3><p>Share feedback and provide additional information about your complaint.</p></article>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="eyebrow centered">A CLEARER PROCESS</div>
+      <h2>From report to <span>resolution.</span></h2>
+      <div class="steps">
+        <div><b>STEP 01</b><h3>Submit your complaint</h3><p>Register, describe the issue, select a category, and add location details.</p></div>
+        <div><b>STEP 02</b><h3>Review and investigate</h3><p>The officer reviews the complaint, updates its status, and records the work done.</p></div>
+        <div><b>STEP 03</b><h3>Track and give feedback</h3><p>Check the outcome, review resolution evidence, and share your experience.</p></div>
+      </div>
+    </section>
+
+    <section class="section dashboard-section" id="dashboard">
+      <div class="dashboard-heading">
+        <div><div class="eyebrow">YOUR WORKSPACE</div><h2>Complaint <span>dashboard.</span></h2></div>
+        <label>DEMO ROLE
+          <select id="roleSelect">
+            <option value="user">User</option>
+            <option value="officer">Officer</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="dashboard">
+        <aside class="sidebar">
+          <div class="side-brand"><span class="brand-icon">C</span> ComplainEase</div>
+          <div class="profile"><div class="avatar" id="avatar">G</div><div><b id="profileName">Guest User</b><small id="profileRole">User account</small></div></div>
+          <button class="side-link active" data-page="overview">▦ Overview</button>
+          <button class="side-link" data-page="complaints">▤ Complaints</button>
+          <button class="side-link" data-page="submit">＋ Post complaint</button>
+          <button class="side-link" data-page="feedback">♡ Feedback</button>
+          <button class="side-link" data-page="accounts">♙ Accounts</button>
+          <button class="side-link" data-page="help">ⓘ Help & contact</button>
+          <div class="sidebar-note">● Demo workspace<br><small>Data saved in this browser</small></div>
+          <button class="side-link logout-link" id="logoutBtn">↪ Logout</button>
+        </aside>
+
+        <div class="dash-main">
+          <div class="dash-top">
+            <div><h3 id="greeting">Welcome back 👋</h3><p>Here is your complaint activity at a glance.</p></div>
+            <button class="btn btn-primary" id="newComplaintBtn">+ New complaint</button>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric"><span>Total complaints</span><strong id="totalCount">03</strong><small>All recorded complaints</small></div>
+            <div class="metric"><span>In progress</span><strong id="progressCount">01</strong><small>Currently being reviewed</small></div>
+            <div class="metric"><span>Resolved</span><strong id="resolvedCount">01</strong><small>Marked as resolved</small></div>
+          </div>
+
+          <div class="panel" id="mainPanel">
+            <div class="panel-heading">
+              <div><h3 id="panelTitle">Recent complaints</h3><p id="panelDescription">Search and track your reported issues.</p></div>
+              <button class="text-btn" id="refreshBtn">↻ Refresh</button>
+            </div>
+            <div class="filters">
+              <input id="searchInput" type="search" placeholder="Search by ID, title, or category...">
+              <select id="statusFilter">
+                <option value="all">All statuses</option>
+                <option value="Submitted">Submitted</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+            <div id="complaintList" class="complaint-list"></div>
+            <p id="emptyState" class="empty-state hidden">No complaints found. Try another search or post a new complaint.</p>
+          </div>
+
+          <div class="panel hidden" id="formPanel">
+            <div class="panel-heading"><div><h3 id="formTitle">Post a complaint</h3><p>Describe the issue clearly to help resolve it.</p></div></div>
+            <form id="complaintForm" class="data-form">
+              <label>Complaint title<input id="complaintTitle" required maxlength="100" placeholder="e.g. Street light not working"></label>
+              <label>Category
+                <select id="complaintCategory" required>
+                  <option value="">Choose a category</option>
+                  <option>Roads and transport</option><option>Water supply</option><option>Electricity</option><option>Sanitation</option><option>Public safety</option><option>Public services</option><option>Other</option>
+                </select>
+              </label>
+              <label>Description<textarea id="complaintDescription" required maxlength="2000" rows="4" placeholder="Explain what happened, where, and when..."></textarea></label>
+              <label>Location<input id="complaintLocation" placeholder="Area, street, or landmark"></label>
+              <label>Evidence link (optional)<input id="complaintEvidence" type="url" placeholder="https://example.com/evidence"></label>
+              <div class="form-actions"><button type="button" class="btn btn-light" id="mapBtn">⌖ Open Google Maps</button><button type="submit" class="btn btn-primary">Submit complaint ↗</button></div>
+            </form>
+          </div>
+
+          <div class="panel hidden" id="accountsPanel">
+            <div class="panel-heading"><div><h3>Account management</h3><p>Admin tools for demo accounts and officer credentials.</p></div></div>
+            <form id="officerForm" class="data-form">
+              <label>Officer name<input id="officerName" required placeholder="Officer name"></label>
+              <label>Officer email<input id="officerEmail" type="email" required placeholder="officer@example.com"></label>
+              <label>Temporary password<input id="officerPassword" required minlength="4" placeholder="Create demo password"></label>
+              <button class="btn btn-primary" type="submit">Create officer account</button>
+            </form>
+            <div id="accountList" class="complaint-list"></div>
+          </div>
+
+          <div class="panel hidden" id="feedbackPanel">
+            <div class="panel-heading"><div><h3>Share feedback</h3><p>Tell us about your complaint resolution experience.</p></div></div>
+            <form id="feedbackForm" class="data-form">
+              <label>Complaint
+                <select id="feedbackComplaint" required></select>
+              </label>
+              <label>Rating
+                <select id="feedbackRating" required><option value="5">5 — Excellent</option><option value="4">4 — Good</option><option value="3">3 — Average</option><option value="2">2 — Poor</option><option value="1">1 — Very poor</option></select>
+              </label>
+              <label>Comments<textarea id="feedbackComment" required rows="3" placeholder="Share your feedback..."></textarea></label>
+              <button class="btn btn-primary" type="submit">Submit feedback ↗</button>
+            </form>
+            <div id="feedbackList" class="complaint-list"></div>
+          </div>
+
+          <div class="panel hidden" id="helpPanel">
+            <div class="panel-heading"><div><h3>Help & contact</h3><p>Contact the administrator for assistance.</p></div></div>
+            <div class="help-card"><div class="feature-icon">✉</div><h3>Administrator contact</h3><p>Email: <a href="mailto:admin@complainease.demo">admin@complainease.demo</a></p><p>This is a sample contact address for the academic demo. Replace it with your actual contact details.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div><div class="eyebrow">YOUR CONCERN COUNTS</div><h2>Speak up. Track progress.<br><span>Make a difference.</span></h2><p>Start with a complaint. Help build a more responsive community.</p><button class="btn btn-primary btn-lg" id="ctaReport">File your first complaint ↗</button></div>
+      <div class="cta-art"><div class="cta-circle">✓</div><span class="cta-spark">✦</span></div>
+    </section>
+  </main>
+
+  <footer><a href="#" class="brand">Complain<span>Ease</span></a><p>© 2026 ComplainEase. Academic demonstration project.</p><a href="#dashboard">Go to dashboard ↑</a></footer>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <button class="modal-close" id="closeModal" aria-label="Close">×</button>
+      <div class="modal-logo">C</div><div class="eyebrow">WELCOME TO COMPLAINEASE</div>
+      <h2 id="modalTitle">Create your account</h2><p id="modalDescription">Join the platform and make your voice heard.</p>
+      <form id="accountForm" class="data-form">
+        <label id="nameLabel">Full name<input id="fullName" placeholder="Your name"></label>
+        <label>Email address<input id="email" type="email" required placeholder="you@example.com"></label>
+        <label>Password<input id="password" type="password" minlength="4" required placeholder="At least 4 characters"></label>
+        <button class="btn btn-primary full-btn" id="submitAccount" type="submit">Create account ↗</button>
+      </form>
+      <p class="switch-text" id="switchText">Already registered? <button id="switchMode" type="button">Login</button></p>
+      <p class="demo-note">Demo only: do not use real passwords or sensitive personal information.</p>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
