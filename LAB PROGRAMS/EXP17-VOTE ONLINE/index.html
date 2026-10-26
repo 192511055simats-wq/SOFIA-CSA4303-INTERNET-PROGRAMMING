@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoteOnline | E-Voting System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="#" class="logo">🗳️ VoteOnline</a>
+    <nav>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#candidates">Candidates</a>
+      <a href="#vote">Vote</a>
+      <a href="#results">Results</a>
+      <a href="#admin">Admin</a>
+    </nav>
+    <span class="live"><span></span> Demo Election</span>
+  </header>
+
+  <main>
+    <section class="hero" id="dashboard">
+      <div class="hero-content">
+        <span class="eyebrow">YOUR VOICE MATTERS</span>
+        <h1>Every Vote.<br><span>Every Voice.</span></h1>
+        <p>A simple, transparent and user-friendly platform
+          for experiencing digital elections.</p>
+        <a href="#vote" class="btn">Cast Your Vote ↗</a>
+        <a href="#results" class="btn btn-outline">View Results</a>
+      </div>
+      <div class="hero-art">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="ballot">🗳️</div>
+        <div class="float-card">✓ Your voice counts!</div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card">
+        <span>👥</span><p>Registered Voters</p>
+        <h2 id="voterCount">0</h2>
+      </div>
+      <div class="stat-card">
+        <span>🧑‍💼</span><p>Candidates</p>
+        <h2 id="candidateCount">0</h2>
+      </div>
+      <div class="stat-card">
+        <span>✅</span><p>Votes Cast</p>
+        <h2 id="voteCount">0</h2>
+      </div>
+      <div class="stat-card">
+        <span>📊</span><p>Participation</p>
+        <h2 id="turnout">0%</h2>
+      </div>
+    </section>
+
+    <section class="section" id="candidates">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">MEET YOUR CHOICES</span>
+          <h2>Election Candidates</h2>
+        </div>
+        <span class="pill">Sample candidates</span>
+      </div>
+      <div class="candidate-grid" id="candidateGrid"></div>
+    </section>
+
+    <section class="section voting-section" id="vote">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">MAKE YOUR CHOICE</span>
+          <h2>Cast Your Vote</h2>
+        </div>
+      </div>
+      <div class="form-card">
+        <p class="notice">🔒 College demonstration only. Enter a demo voter ID
+          and use the OTP displayed by this application.</p>
+        <form id="voteForm">
+          <label for="voterId">Voter ID</label>
+          <input id="voterId" placeholder="Example: VOTER101"
+            required maxlength="30">
+
+          <label for="otp">Demo OTP</label>
+          <div class="otp-row">
+            <input id="otp" placeholder="Generate OTP first"
+              required inputmode="numeric" maxlength="6">
+            <button type="button" class="btn btn-small"
+              id="otpButton">Get OTP</button>
+          </div>
+          <p id="otpMessage" class="help"></p>
+
+          <label for="candidateSelect">Select Candidate</label>
+          <select id="candidateSelect" required></select>
+
+          <button type="submit" class="btn submit-btn">
+            Submit Vote ✓
+          </button>
+        </form>
+        <div id="voteMessage" class="message" role="status"></div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ELECTION STATISTICS</span>
+          <h2>Live Demo Results</h2>
+        </div>
+        <button class="btn btn-outline" id="refreshResults">
+          Refresh Results ↻
+        </button>
+      </div>
+      <div class="results-card" id="resultsList"></div>
+    </section>
+
+    <section class="section admin-section" id="admin">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">CONTROL CENTRE</span>
+          <h2>Admin Dashboard</h2>
+        </div>
+        <span class="pill">Local demo</span>
+      </div>
+
+      <div class="admin-grid">
+        <div class="form-card">
+          <h3>➕ Add Candidate</h3>
+          <form id="candidateForm">
+            <label for="candidateName">Candidate Name</label>
+            <input id="candidateName" required maxlength="60"
+              placeholder="Enter candidate name">
+            <label for="candidateParty">Party / Group</label>
+            <input id="candidateParty" required maxlength="60"
+              placeholder="Enter party or group">
+            <label for="candidateSymbol">Symbol / Emoji</label>
+            <input id="candidateSymbol" required maxlength="8"
+              value="⭐">
+            <button class="btn submit-btn">Add Candidate</button>
+          </form>
+        </div>
+
+        <div class="form-card">
+          <h3>👤 Register Voter</h3>
+          <form id="voterForm">
+            <label for="newVoterId">Voter ID</label>
+            <input id="newVoterId" required maxlength="30"
+              placeholder="Example: VOTER102">
+            <label for="newVoterName">Voter Name</label>
+            <input id="newVoterName" required maxlength="60"
+              placeholder="Enter voter name">
+            <button class="btn submit-btn">Register Voter</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="form-card admin-list">
+        <div class="list-heading">
+          <h3>Manage Candidates</h3>
+          <button class="btn btn-danger" id="resetDemo">
+            Reset Demo Data
+          </button>
+        </div>
+        <div id="adminCandidateList"></div>
+      </div>
+
+      <div class="form-card admin-list">
+        <h3>Registered Voters</h3>
+        <div id="adminVoterList"></div>
+      </div>
+
+      <div class="form-card admin-list">
+        <div class="list-heading">
+          <h3>Recent Vote Records</h3>
+          <button class="btn btn-outline" id="exportVotes">
+            Export CSV
+          </button>
+        </div>
+        <p class="help">Demo records only. No real election credentials
+          or confidential voter information should be stored here.</p>
+        <div id="adminVoteList"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="logo">🗳️ VoteOnline</div>
+    <p>Internet Programming Lab Project · Educational Demonstration</p>
+    <p>© 2026 VoteOnline</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
