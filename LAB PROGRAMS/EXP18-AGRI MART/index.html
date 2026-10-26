@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriMart | Agriculture Marketplace</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="#home">🌱 AgriMart</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#cart">Cart <span id="cartCount">0</span></a>
+      <a href="#orders">My Orders</a>
+      <a href="#farmer">Farmer Hub</a>
+    </nav>
+    <button class="btn btn-small" id="accountButton">Login / Register</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <span class="eyebrow">🌾 GROW BETTER. LIVE GREENER.</span>
+        <h1>Everything Your Farm <span>Needs.</span></h1>
+        <p>Discover quality seeds, fertilizers, tools and farming essentials
+          from one convenient marketplace.</p>
+        <a href="#products" class="btn">Explore Products ↗</a>
+        <a href="#farmer" class="btn btn-light">Sell Your Products</a>
+        <div class="hero-points">
+          <span>✓ Farm essentials</span>
+          <span>✓ Order tracking</span>
+          <span>✓ Easy shopping</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="sun"></div>
+        <div class="plant">🌱</div>
+        <div class="floating-card">🌿 Fresh farming essentials</div>
+        <div class="floating-card second">🚚 Track your orders</div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <article class="stat">
+        <span>🧺</span><p>Products</p><h2 id="productCount">0</h2>
+      </article>
+      <article class="stat">
+        <span>🛒</span><p>My Orders</p><h2 id="orderCount">0</h2>
+      </article>
+      <article class="stat">
+        <span>💰</span><p>Wallet Balance</p><h2 id="walletBalance">₹0</h2>
+      </article>
+      <article class="stat">
+        <span>🌿</span><p>Categories</p><h2>5</h2>
+      </article>
+    </section>
+
+    <section class="section" id="products">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">SHOP SMARTER</span>
+          <h2>Explore Farm Essentials</h2>
+          <p class="muted">Find what your farm needs today.</p>
+        </div>
+      </div>
+
+      <div class="filters">
+        <input id="searchInput" placeholder="🔎 Search seeds, tools, fertilizer...">
+        <select id="categoryFilter">
+          <option value="All">All Categories</option>
+          <option value="Seeds">Seeds</option>
+          <option value="Fertilizers">Fertilizers</option>
+          <option value="Pesticides">Pesticides</option>
+          <option value="Equipment">Equipment</option>
+          <option value="Tools">Tools</option>
+        </select>
+        <select id="sortFilter">
+          <option value="default">Sort: Recommended</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+
+      <div class="category-row">
+        <button class="category-chip active" data-category="All">🌾 All</button>
+        <button class="category-chip" data-category="Seeds">🌱 Seeds</button>
+        <button class="category-chip" data-category="Fertilizers">🪴 Fertilizers</button>
+        <button class="category-chip" data-category="Pesticides">🛡️ Pesticides</button>
+        <button class="category-chip" data-category="Equipment">🚜 Equipment</button>
+        <button class="category-chip" data-category="Tools">🧰 Tools</button>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+      <p id="noProducts" class="empty" hidden>No products found. Try another search.</p>
+    </section>
+
+    <section class="section cart-section" id="cart">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">YOUR BASKET</span>
+          <h2>Shopping Cart 🛒</h2>
+        </div>
+        <button class="btn btn-light" id="clearCart">Clear Cart</button>
+      </div>
+      <div class="panel">
+        <div id="cartItems"></div>
+        <div class="cart-total">
+          <span>Total Amount</span>
+          <strong id="cartTotal">₹0</strong>
+        </div>
+        <form id="checkoutForm">
+          <h3>Delivery Details</h3>
+          <div class="form-grid">
+            <div>
+              <label for="customerName">Full Name</label>
+              <input id="customerName" required maxlength="60" placeholder="Your name">
+            </div>
+            <div>
+              <label for="customerPhone">Phone Number</label>
+              <input id="customerPhone" required inputmode="numeric"
+                pattern="[0-9]{10}" maxlength="10" placeholder="10-digit phone number">
+            </div>
+          </div>
+          <label for="shippingAddress">Shipping Address</label>
+          <textarea id="shippingAddress" required maxlength="250"
+            placeholder="Village, street, district, PIN code"></textarea>
+          <label for="paymentMethod">Demo Payment Method</label>
+          <select id="paymentMethod">
+            <option value="Wallet">Demo Wallet</option>
+            <option value="Cash on Delivery">Cash on Delivery (Demo)</option>
+          </select>
+          <button class="btn" type="submit">Place Order ✓</button>
+          <p class="muted small">Educational demo only. No real payment is processed.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="orders">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">PURCHASE HISTORY</span>
+          <h2>My Orders 📦</h2>
+        </div>
+        <button class="btn btn-light" id="refreshOrders">Refresh</button>
+      </div>
+      <div class="order-grid" id="orderList"></div>
+    </section>
+
+    <section class="section farmer-section" id="farmer">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">FOR FARMERS & SELLERS</span>
+          <h2>Farmer Hub 🚜</h2>
+          <p class="muted">Manage products, inventory, orders and sales.</p>
+        </div>
+      </div>
+
+      <div class="farmer-stats">
+        <div class="farmer-stat"><span>Total Sales</span><h3 id="salesTotal">₹0</h3></div>
+        <div class="farmer-stat"><span>Products Listed</span><h3 id="farmerProductCount">0</h3></div>
+        <div class="farmer-stat"><span>Orders Received</span><h3 id="farmerOrderCount">0</h3></div>
+      </div>
+
+      <div class="farmer-grid">
+        <div class="panel">
+          <h3>➕ Add / Edit Product</h3>
+          <form id="productForm">
+            <input type="hidden" id="editProductId">
+            <label for="productName">Product Name</label>
+            <input id="productName" required maxlength="70" placeholder="e.g. Tomato Seeds">
+            <label for="productCategory">Category</label>
+            <select id="productCategory" required>
+              <option value="Seeds">Seeds</option>
+              <option value="Fertilizers">Fertilizers</option>
+              <option value="Pesticides">Pesticides</option>
+              <option value="Equipment">Equipment</option>
+              <option value="Tools">Tools</option>
+            </select>
+            <label for="productPrice">Price (₹)</label>
+            <input id="productPrice" type="number" min="1" max="10000000"
+              step="0.01" required placeholder="Price">
+            <label for="productStock">Available Quantity</label>
+            <input id="productStock" type="number" min="0" max="100000"
+              step="1" required placeholder="Stock">
+            <label for="productEmoji">Product Emoji</label>
+            <input id="productEmoji" maxlength="8" value="🌱" required>
+            <button class="btn" type="submit" id="productSubmit">Add Product</button>
+            <button class="btn btn-light" type="button" id="cancelEdit" hidden>Cancel Edit</button>
+          </form>
+        </div>
+
+        <div class="panel">
+          <h3>💳 Demo Wallet</h3>
+          <p class="muted">Use sample credits to test wallet checkout.</p>
+          <div class="wallet-box">
+            <span>Available Balance</span>
+            <h2 id="farmerWalletBalance">₹0</h2>
+          </div>
+          <form id="walletForm">
+            <label for="walletAmount">Add Demo Credits (₹)</label>
+            <input id="walletAmount" type="number" min="1" max="100000"
+              step="1" required placeholder="Enter amount">
+            <button class="btn" type="submit">Add Demo Credits</button>
+          </form>
+          <p class="muted small">Credits are stored only in this browser.</p>
+        </div>
+      </div>
+
+      <div class="panel spaced">
+        <div class="section-heading compact">
+          <h3>📋 Manage Inventory</h3>
+          <button class="btn btn-light" id="exportProducts">Export Products CSV</button>
+        </div>
+        <div id="inventoryList"></div>
+      </div>
+
+      <div class="panel spaced">
+        <h3>🚚 Manage Order Shipping Status</h3>
+        <p class="muted small">Update the demonstration order's progress.</p>
+        <div id="farmerOrders"></div>
+      </div>
+    </section>
+
+    <section class="section account-section" id="account">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">WELCOME TO AGRIMART</span>
+          <h2>Public Account</h2>
+        </div>
+      </div>
+      <div class="account-grid">
+        <div class="panel">
+          <h3>👤 Register / Login</h3>
+          <form id="accountForm">
+            <label for="accountName">Full Name</label>
+            <input id="accountName" required maxlength="60" placeholder="Your name">
+            <label for="accountPhone">10-digit Phone Number</label>
+            <input id="accountPhone" required pattern="[0-9]{10}"
+              inputmode="numeric" maxlength="10" placeholder="Phone number">
+            <label for="accountAddress">Shipping Address</label>
+            <textarea id="accountAddress" maxlength="250"
+              placeholder="Optional delivery address"></textarea>
+            <button class="btn" type="submit">Register / Login</button>
+          </form>
+          <div id="accountMessage" class="notice" hidden></div>
+          <button class="btn btn-light spaced-button" id="logoutButton">
+            Logout
+          </button>
+        </div>
+        <div class="panel">
+          <h3>🔐 Demo OTP Verification</h3>
+          <p class="muted">A classroom simulation, not a real SMS service.</p>
+          <label for="accountOtp">Enter OTP</label>
+          <input id="accountOtp" inputmode="numeric" maxlength="6" placeholder="123456">
+          <button class="btn spaced-button" id="verifyAccountOtp" type="button">
+            Verify OTP
+          </button>
+          <p id="accountOtpMessage" class="muted small"></p>
+          <hr>
+          <h3>💡 Recommended Products</h3>
+          <p class="muted small">Recommendations are based on products viewed
+            or added to the cart on this device.</p>
+          <div id="recommendations"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#home">🌱 AgriMart</a>
+    <p>Grow smarter. Shop easier. Support agriculture.</p>
+    <p>Internet Programming Lab Project · © 2026</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
