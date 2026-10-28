@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCure | Animal Healthcare</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="toast" class="toast"></div>
+
+  <header class="navbar">
+    <a class="brand" href="#" onclick="showPage('home')"><span>🐾</span> VetCure</a>
+    <nav id="mainNav">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('doctors')">Doctors</a>
+      <a href="#" onclick="showPage('news')">News</a>
+      <a href="#" onclick="showPage('cures')">Cures</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn ghost" onclick="showPage('login')">Login</button>
+      <button class="btn primary" onclick="showPage('register')">Register</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">DIGITAL VETERINARY CARE</span>
+          <h1>Better care for every <span>animal.</span></h1>
+          <p>Send animal symptoms through text, images, audio or video. Connect with doctors, manage complaints, view cures and make payments from one simple platform.</p>
+          <div class="hero-buttons">
+            <button class="btn primary big" onclick="showPage('register')">Get Started →</button>
+            <button class="btn glass big" onclick="showPage('doctors')">Find a Doctor</button>
+          </div>
+          <div class="stats">
+            <div><b>24/7</b><small>Request access</small></div>
+            <div><b>4+</b><small>Media formats</small></div>
+            <div><b>100%</b><small>Digital records</small></div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="animal-orbit">🐄</div>
+          <div class="floating-card c1">🩺 Doctor Response <strong>Ready</strong></div>
+          <div class="floating-card c2">📷 Image Analysis <strong>Available</strong></div>
+          <div class="floating-card c3">💳 Secure Payment <strong>Easy</strong></div>
+        </div>
+      </div>
+      <div class="feature-grid">
+        <article><span>📹</span><h3>Send Symptoms</h3><p>Text, images, audio and video complaint support.</p></article>
+        <article><span>👨‍⚕️</span><h3>Consult Doctors</h3><p>Browse government and private veterinary doctors.</p></article>
+        <article><span>💊</span><h3>Manage Cures</h3><p>View common diseases, medicines and prescriptions.</p></article>
+        <article><span>📊</span><h3>Area Reports</h3><p>Use recorded data for disease trend analysis.</p></article>
+      </div>
+    </section>
+
+    <section id="login" class="page">
+      <div class="form-shell">
+        <div class="form-intro"><span class="eyebrow">WELCOME BACK</span><h2>Login to VetCure</h2><p>Access your complaints, reports, doctors and profile.</p></div>
+        <form id="loginForm" class="form-card">
+          <label>Email<input id="loginEmail" type="email" required placeholder="farmer@example.com"></label>
+          <label>Password<input id="loginPassword" type="password" required placeholder="••••••••"></label>
+          <label>Role<select id="loginRole"><option>Farmer</option><option>Doctor</option></select></label>
+          <button class="btn primary big" type="submit">Login</button>
+          <p class="form-note">Demo accounts can be created through Register.</p>
+        </form>
+      </div>
+    </section>
+
+    <section id="register" class="page">
+      <div class="form-shell">
+        <div class="form-intro"><span class="eyebrow">JOIN VETCURE</span><h2>Create your account</h2><p>Register as a farmer or veterinary doctor.</p></div>
+        <form id="registerForm" class="form-card">
+          <label>Full Name<input id="regName" required placeholder="Your full name"></label>
+          <label>Email<input id="regEmail" type="email" required placeholder="name@example.com"></label>
+          <label>Password<input id="regPassword" type="password" minlength="6" required placeholder="Minimum 6 characters"></label>
+          <label>Role<select id="regRole"><option>Farmer</option><option>Doctor</option></select></label>
+          <label id="clinicWrap">Clinic Type<select id="clinicType"><option>Government CVH</option><option>Private Clinic</option></select></label>
+          <button class="btn primary big" type="submit">Create Account</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="dashboard" class="page">
+      <div class="section-heading"><span class="eyebrow">FARMER PORTAL</span><h2>Welcome, <span id="dashName">Farmer</span></h2><p>Manage your animal healthcare requests from one dashboard.</p></div>
+      <div class="dashboard-grid">
+        <button class="dash-card" onclick="showPage('complaint')"><span>📝</span><b>Post Complaint</b><small>Send symptoms and media</small></button>
+        <button class="dash-card" onclick="showPage('status')"><span>🔎</span><b>My Complaint Status</b><small>Track doctor responses</small></button>
+        <button class="dash-card" onclick="showPage('doctors')"><span>👨‍⚕️</span><b>View Doctor</b><small>Government & private doctors</small></button>
+        <button class="dash-card" onclick="showPage('cures')"><span>💊</span><b>View VetCure Details</b><small>Diseases & prescriptions</small></button>
+        <button class="dash-card" onclick="showPage('report')"><span>📊</span><b>View Report</b><small>Area disease trends</small></button>
+        <button class="dash-card" onclick="showPage('payment')"><span>💳</span><b>Make Payment</b><small>Bank transfer / EasyPaisa</small></button>
+        <button class="dash-card" onclick="showPage('feedback')"><span>⭐</span><b>Post Feedback</b><small>Rate your experience</small></button>
+        <button class="dash-card" onclick="showPage('profile')"><span>👤</span><b>My Profile</b><small>Manage your account</small></button>
+      </div>
+    </section>
+
+    <section id="complaint" class="page">
+      <div class="section-heading"><span class="eyebrow">NEW REQUEST</span><h2>Post Animal Complaint</h2><p>Describe the animal's signs and symptoms. Attach text, image, audio or video.</p></div>
+      <form id="complaintForm" class="wide-form">
+        <div class="form-row"><label>Animal Type<input id="animalType" required placeholder="Cow, goat, dog..."></label><label>Animal Age<input id="animalAge" placeholder="e.g. 3 years"></label></div>
+        <label>Signs & Symptoms<textarea id="symptoms" required placeholder="Describe fever, appetite, wounds, behavior, etc."></textarea></label>
+        <div class="upload-grid">
+          <label class="upload">🖼️ Image<input id="imageFile" type="file" accept="image/*"></label>
+          <label class="upload">🎙️ Audio<input id="audioFile" type="file" accept="audio/*"></label>
+          <label class="upload">🎥 Video<input id="videoFile" type="file" accept="video/*"></label>
+        </div>
+        <label>Preferred Doctor<select id="doctorSelect"></select></label>
+        <button class="btn primary big" type="submit">Submit Complaint →</button>
+      </form>
+    </section>
+
+    <section id="status" class="page">
+      <div class="section-heading"><span class="eyebrow">MY COMPLAINTS</span><h2>Complaint Status</h2><p>All submitted requests are saved locally in this demo.</p></div>
+      <div id="complaintList" class="list"></div>
+    </section>
+
+    <section id="doctors" class="page">
+      <div class="section-heading"><span class="eyebrow">VETERINARY NETWORK</span><h2>Find a Doctor</h2><p>Government CVHs are free; private doctors may require payment.</p></div>
+      <div id="doctorGrid" class="doctor-grid"></div>
+    </section>
+
+    <section id="cures" class="page">
+      <div class="section-heading"><span class="eyebrow">VETCURE LIBRARY</span><h2>Diseases & Prescriptions</h2><p>Basic educational information for common animal diseases. Always confirm treatment with a veterinarian.</p></div>
+      <div id="cureGrid" class="cure-grid"></div>
+    </section>
+
+    <section id="news" class="page">
+      <div class="section-heading"><span class="eyebrow">LATEST UPDATES</span><h2>Veterinary News</h2><p>Demo news management area.</p></div>
+      <div id="newsGrid" class="news-grid"></div>
+    </section>
+
+    <section id="report" class="page">
+      <div class="section-heading"><span class="eyebrow">ANALYTICS</span><h2>Disease Area Report</h2><p>Example analysis based on recorded complaint data stored in localStorage.</p></div>
+      <div class="report-card"><canvas id="reportChart" width="800" height="360"></canvas></div>
+      <div id="reportSummary" class="summary-grid"></div>
+    </section>
+
+    <section id="payment" class="page">
+      <div class="section-heading"><span class="eyebrow">PAYMENT</span><h2>Make Payment</h2><p>Select a private doctor and a payment method.</p></div>
+      <form id="paymentForm" class="wide-form">
+        <label>Doctor<select id="paymentDoctor"></select></label>
+        <label>Amount (PKR)<input id="paymentAmount" type="number" min="1" value="500" required></label>
+        <div class="payment-methods">
+          <label class="method"><input type="radio" name="payMethod" value="Bank Transfer" checked> 🏦 Bank Transfer</label>
+          <label class="method"><input type="radio" name="payMethod" value="EasyPaisa"> 📱 EasyPaisa</label>
+        </div>
+        <div id="paymentDetails" class="info-box"></div>
+        <button class="btn primary big" type="submit">Record Payment</button>
+      </form>
+    </section>
+
+    <section id="feedback" class="page">
+      <div class="section-heading"><span class="eyebrow">FEEDBACK</span><h2>Post Feedback</h2></div>
+      <form id="feedbackForm" class="wide-form">
+        <label>Doctor<select id="feedbackDoctor"></select></label>
+        <label>Rating<select id="rating"><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select></label>
+        <label>Comments<textarea id="feedbackText" required placeholder="Tell us about your experience..."></textarea></label>
+        <button class="btn primary big" type="submit">Submit Feedback</button>
+      </form>
+    </section>
+
+    <section id="profile" class="page">
+      <div class="section-heading"><span class="eyebrow">MY ACCOUNT</span><h2>My Profile</h2></div>
+      <div id="profileCard" class="profile-card"></div>
+    </section>
+
+    <section id="doctorDashboard" class="page">
+      <div class="section-heading"><span class="eyebrow">DOCTOR PORTAL</span><h2>Doctor Dashboard</h2><p>Review complaints, provide solutions and manage clinic information.</p></div>
+      <div class="dashboard-grid">
+        <button class="dash-card" onclick="showPage('doctorComplaints')"><span>📥</span><b>View Complaint</b><small>Review farmer requests</small></button>
+        <button class="dash-card" onclick="showPage('doctorSolution')"><span>🩺</span><b>Post Solution</b><small>Respond to complaints</small></button>
+        <button class="dash-card" onclick="showPage('doctorCures')"><span>💊</span><b>Manage Cure</b><small>Add disease information</small></button>
+        <button class="dash-card" onclick="showPage('doctorNews')"><span>📰</span><b>Manage News</b><small>Publish updates</small></button>
+        <button class="dash-card" onclick="showPage('doctorUsers')"><span>👥</span><b>View User Details</b><small>Registered farmers</small></button>
+        <button class="dash-card" onclick="showPage('doctorPayments')"><span>💰</span><b>View Payment Details</b><small>Payment records</small></button>
+        <button class="dash-card" onclick="showPage('doctorFeedback')"><span>⭐</span><b>Feedback Details</b><small>Review feedback</small></button>
+        <button class="dash-card" onclick="showPage('profile')"><span>👤</span><b>My Profile</b><small>Clinic and bank details</small></button>
+      </div>
+    </section>
+
+    <section id="doctorComplaints" class="page"><div class="section-heading"><span class="eyebrow">DOCTOR WORKSPACE</span><h2>Farmer Complaints</h2></div><div id="doctorComplaintList" class="list"></div></section>
+
+    <section id="doctorSolution" class="page">
+      <div class="section-heading"><span class="eyebrow">MEDICAL RESPONSE</span><h2>Post Solution</h2></div>
+      <form id="solutionForm" class="wide-form">
+        <label>Complaint ID<input id="solutionId" type="number" required placeholder="Enter complaint ID"></label>
+        <label>Solution / Advice<textarea id="solutionText" required placeholder="Enter veterinary advice, recommended examination, follow-up..."></textarea></label>
+        <button class="btn primary big" type="submit">Send Solution</button>
+      </form>
+    </section>
+
+    <section id="doctorCures" class="page"><div class="section-heading"><span class="eyebrow">CONTENT MANAGEMENT</span><h2>Manage Cures</h2></div><form id="cureForm" class="wide-form"><label>Disease<input id="newDisease" required></label><label>Description<textarea id="newCureDesc" required></textarea></label><label>Prescription / Care<textarea id="newPrescription" required></textarea></label><button class="btn primary big">Add Cure</button></form></section>
+
+    <section id="doctorNews" class="page"><div class="section-heading"><span class="eyebrow">CONTENT MANAGEMENT</span><h2>Manage News</h2></div><form id="newsForm" class="wide-form"><label>News Title<input id="newsTitle" required></label><label>News Content<textarea id="newsContent" required></textarea></label><button class="btn primary big">Publish News</button></form></section>
+
+    <section id="doctorUsers" class="page"><div class="section-heading"><span class="eyebrow">USER DATA</span><h2>Registered Farmers</h2></div><div id="userList" class="list"></div></section>
+    <section id="doctorPayments" class="page"><div class="section-heading"><span class="eyebrow">PAYMENTS</span><h2>Payment Details</h2></div><div id="paymentList" class="list"></div></section>
+    <section id="doctorFeedback" class="page"><div class="section-heading"><span class="eyebrow">FEEDBACK</span><h2>Feedback Details</h2></div><div id="feedbackList" class="list"></div></section>
+  </main>
+
+  <footer><b>🐾 VetCure</b><span>Animal healthcare management prototype • HTML + CSS + JavaScript + LocalStorage</span></footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
